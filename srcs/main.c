@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/23 20:29:52 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/01/24 12:24:03 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 int		main(void)
 {
-	char *line;
-	char *str;
+	char	*line;
+	char	*str;
+	int		i;
 	
-	while (get_next_line(0, &line))
+	while (1)
 	{
-		
+		get_next_line(0, &line);
+		i = ft_atoi(line + 8);
+		while (get_next_line(0, &line))
+		{
+			
+		}
 	}
 	return (IWAN);
 }
