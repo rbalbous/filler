@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/08/30 20:33:30 by home              #+#    #+#             */
+/*   Updated: 2017/11/06 19:07:52 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+char	*ft_strcpy(char *dest, const char *src)
 {
-	int		height;
-	int		width;
-}				t_map;
+	int i;
 
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	i = -1;
+	while (src[++i])
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (dest);
+}

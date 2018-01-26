@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/09/26 12:37:58 by rbalbous          #+#    #+#             */
+/*   Updated: 2017/11/07 16:23:32 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	int		height;
-	int		width;
-}				t_map;
+	unsigned char		*ss;
+	unsigned char		*dd;
+	int					i;
 
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	i = 0;
+	dd = (unsigned char*)dest;
+	ss = (unsigned char*)src;
+	while (n-- > 0)
+	{
+		dd[i] = ss[i];
+		i++;
+		if ((unsigned char)c == ss[i - 1])
+			return (dest + i);
+	}
+	return (NULL);
+}

@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   pf_cap_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/11/29 15:36:31 by rbalbous          #+#    #+#             */
+/*   Updated: 2018/01/09 18:58:57 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "ft_printf.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+int		pf_cap_x(t_flags *flags, t_var *var, va_list ap, unsigned char *str)
 {
-	int		height;
-	int		width;
-}				t_map;
-
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	flags->capx = 1;
+	pf_x(flags, var, ap, str);
+	return (0);
+}

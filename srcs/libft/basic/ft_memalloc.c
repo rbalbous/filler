@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/10/05 17:17:59 by rbalbous          #+#    #+#             */
+/*   Updated: 2018/01/11 22:28:07 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+void	*ft_memalloc(size_t len)
 {
-	int		height;
-	int		width;
-}				t_map;
+	char	*tmp;
 
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	if ((tmp = (char*)malloc(sizeof(*tmp) * len)) == 0)
+		return (NULL);
+	ft_bzero(tmp, len);
+	return (tmp);
+}

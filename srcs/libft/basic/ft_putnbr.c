@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/09/09 13:10:54 by raf               #+#    #+#             */
+/*   Updated: 2017/11/06 19:08:26 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+void	ft_putnbr(int nbr)
 {
-	int		height;
-	int		width;
-}				t_map;
-
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	if (nbr == -2147483648)
+	{
+		ft_putstr("-2147483648");
+		return ;
+	}
+	if (nbr < 0)
+	{
+		nbr = -nbr;
+		ft_putchar('-');
+	}
+	if (nbr > 9)
+	{
+		ft_putnbr(nbr / 10);
+		ft_putchar(nbr % 10 + 48);
+	}
+	else
+		ft_putchar(nbr + 48);
+}

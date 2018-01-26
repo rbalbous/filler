@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/10/02 16:48:21 by rbalbous          #+#    #+#             */
+/*   Updated: 2017/11/06 18:51:58 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+char	*ft_strrchr(const char *str, int c)
 {
-	int		height;
-	int		width;
-}				t_map;
+	char	*end;
+	int		count;
 
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	count = 0;
+	if (c == 0)
+		return ((char*)(str + ft_strlen(str)));
+	while (*str != 0)
+	{
+		if (*str == (char)c)
+		{
+			end = (char*)str;
+			count++;
+		}
+		str++;
+	}
+	if (count == 0)
+		return (NULL);
+	return (end);
+}

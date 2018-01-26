@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   ft_memacpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbalbous <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:34:30 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/11/10 10:17:11 by rbalbous          #+#    #+#             */
+/*   Updated: 2017/11/10 10:39:43 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include "ft_printf.h"
-# define IWAN 0
-
-typedef	struct	s_map
+void	*ft_memacpy(const void *src, size_t len)
 {
-	int		height;
-	int		width;
-}				t_map;
+	void	*dest;
 
-int		filler(void);
-void	create_map(char **map, char *line, t_map *info);
-
-
-#endif
+	if (!src || len == 0)
+		return (NULL);
+	if ((dest = ft_memalloc(len + 1)) == 0)
+		return (NULL);
+	ft_memcpy(dest, src, len);
+	return (dest);
+}

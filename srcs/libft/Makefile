@@ -5,46 +5,38 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/01/26 18:35:54 by rbalbous         ###   ########.fr        #
+#    Created: 2017/11/21 17:34:45 by rbalbous          #+#    #+#              #
+#    Updated: 2018/01/24 17:51:36 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rbalbous.filler
+NAME = libft.a
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g
-
-SRCS =	main.c \
-		filler.c
-SRCS_PATH = srcs
-OBJ = $(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
-OBJ_PATH = obj
+CFLAGS = -Wall -Wextra -Werror -g
 
 INCLUDES = includes
+OBJ_PATH = obj
 
-LIB_PATH = srcs/libft
-LIB = $(LIB_PATH)/libft.a
+include ft_printf/conv/conv.mk
+include ft_printf/flags/flags.mk
+include	ft_printf/tools/tools.mk
+include basic/libft.mk
 
-all :		$(NAME)
+all : $(NAME)
 
-$(NAME) :	$(LIB) $(OBJ)
-			$(CC) -o $@ $^ $(FLAGS)
-
-$(LIB) :
-			make -C $(LIB_PATH)
-
-$(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c $(INCLUDES)/filler.h
-			@mkdir $(OBJ_PATH) 2> /dev/null || true
-			$(CC) -o $@ -c $< -I $(INCLUDES) -I $(LIB_PATH)/includes $(FLAGS)
-
+$(NAME) :	$(OBJ)
+			mkdir $(OBJ_PATH) 2> /dev/null || true
+			ar rc $(NAME) $^
+			ranlib $(NAME)
+			
 clean :
-			make -C $(LIB_PATH) clean
 			rm -f $(OBJ)
 
-fclean :	clean
+fclean : 	clean
 			rm -f $(NAME)
-			rm -f $(LIB)
+		
+re :
+	make fclean
+	make all
 
-re : fclean all
-
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re

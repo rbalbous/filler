@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/26 18:51:59 by rbalbous         ###   ########.fr       */
+/*   Created: 2017/09/03 19:13:15 by home              #+#    #+#             */
+/*   Updated: 2017/11/08 21:48:38 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		main()
+size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
-	t_map	info;
-	char	*line;
-	char	**map;
+	size_t	dest_size;
 	int		i;
-	int		j;
+	size_t	src_size;
 
 	i = 0;
-	j = 0;
-	info = (t_map){0, 0};
-	get_next_line(0, &line);
-	free(line);
-	get_next_line(0, &line);
-	map = malloc(1);
-	create_map(map, line, &info);
-	free(line);
-	while (1)
+	src_size = ft_strlen(src);
+	dest_size = ft_strlen(dest);
+	if (n == 0)
+		return (src_size);
+	while (src[i] != '\0' && dest_size + i < n - 1)
 	{
-		j = 0;
-		get_next_line(0, &line);
-		free(line);
-		while (j < info.width)
-		{
-			map[i][j] = line[j + 4];
-			j++;
-		}
+		dest[dest_size + i] = src[i];
 		i++;
-		free(line);
-		ft_printf("%d %d\n", i, i);
-		break ;	
 	}
-	return (IWAN);
+	dest[dest_size + i] = '\0';
+	if (n < dest_size)
+		return (n + src_size);
+	return (dest_size + src_size);
 }
