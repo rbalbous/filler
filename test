@@ -1,4 +1,4 @@
-$$$ exec p1 : [resources/players/champely.filler]
+$$$ exec p2 : [resources/players/rbalbous.filler]
 Plateau 15 17:
     01234567890123456
 000 .................
@@ -16,6 +16,5 @@ Plateau 15 17:
 012 ..............X..
 013 .................
 014 .................
-Piece 2 2:
-..
-**
+Piece 1 7:
+...***.
