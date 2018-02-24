@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:03:53 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/24 17:31:14 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/02/24 17:41:11 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		get_min_dist(char **map, int ypiece, int xpiece, t_map *info)
 		}
 		y++;
 	}
-	ft_printf("dist : %d\n", dist);
+	//ft_printf("dist : %d\n", dist);
 	return (dist);
 }
 
@@ -106,13 +106,15 @@ int		algo_filler(char **piece, char **map, t_map *info)
 				{
 					info->x_result = info->x;
 					info->y_result = info->y;
+					//ft_printf("%d %d %d %d\n", tot_dist, disp, info->x_result, info->y_result);
+					tot_dist = disp;
 				}
 			}
 			info->x++;
 		}
 		info->y++;
 	}
-	ft_printf("%d %d\n", info->y, info->x);
+	ft_printf("%d %d\n", info->y_result, info->x_result);
 	return (0);
 }
 
@@ -147,7 +149,7 @@ int		place_piece(char **map, char **piece, t_map *info)
 	//ft_printf("%d\n", disp);
 	if (disp == 1)
 	{
-		ft_printf("%d %d\n", info->y, info->x);
+		//ft_printf("%d %d\n", info->y, info->x);
 		//ft_dprintf(fd, "%d %d\n", info->y, info->x);
 		return (check_distance(map, piece, info));
 	}
