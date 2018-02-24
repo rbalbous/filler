@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/03 19:13:15 by home              #+#    #+#             */
-/*   Updated: 2017/11/08 21:48:38 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/02/22 15:25:50 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
 	size_t	dest_size;
-	int		i;
 	size_t	src_size;
+	int		i;
 
 	i = 0;
 	src_size = ft_strlen(src);

@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/02/10 16:33:12 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/02/21 13:53:18 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ FLAGS = -Wall -Wextra -Werror -g
 
 SRCS =	main.c \
 		filler.c \
-		fi_map.c \
-		fi_piece.c
+		map.c \
+		piece.c
 SRCS_PATH = srcs
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
 OBJ_PATH = obj

@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/10 21:14:58 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/02/24 17:04:48 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main()
 
 	i = 0;
 	j = 0;
-	info = (t_map){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'X', 'X', 0, 0};
+	info = (t_map){0, 0, 0, 0, 0, 0, 0, 0, 'X', 'X'};
 	get_next_line(0, &line);
 	if (ft_strcmp(line + 9, "p1") != 1)
 		info.player = 'O';
@@ -46,9 +46,9 @@ int		main()
 			map = get_map(map, line, &info);
 		}
 		piece = create_piece(piece, line, &info);
-		get_piece(piece, &info);
 		algo_filler(piece, map, &info);
-		fi_break(map, piece, &info);
+		filler_break(map, piece, &info);
 	}
+	filler_break(piece, map, &info);
 	return (IWAN);
 }
