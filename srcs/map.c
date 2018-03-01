@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 16:31:35 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/28 19:21:57 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:15:11 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		free_map(t_map *map)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i < map->height)
 	{

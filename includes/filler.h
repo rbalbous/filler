@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/28 18:43:41 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/01 15:54:35 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ typedef struct	s_piece
 	char	**piece;
 	int		height;
 	int		width;
+	int		x;
+	int		y;
+	int		x_result;
+	int		y_result;
 }				t_piece;
 
 int		create_map(t_map *map, char *line);
@@ -44,7 +48,7 @@ void	get_map(t_map *map, char *line);
 void	filler_break(t_map *map, t_piece *pi);
 int		algo_filler(t_map *map, t_piece *pi);
 int		place_piece(t_map *map, t_piece *pi);
-int		min_dist(t_map *map, int ypiece, int xpiece);
+int		min_dist(t_map *map, t_piece *pi);
 int		check_distance(t_map *map, t_piece *pi);
 
 #endif
