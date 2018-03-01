@@ -6,66 +6,66 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:03:53 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/24 17:41:11 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/01 00:40:58 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	filler_break(char **map, char **piece, t_map *info)
+void	filler_break(t_map *map, t_piece *pi)
 {
 	int		i;
 
 	i = 0;
-	while (i < info->height)
+	while (i < map->height)
 	{
-		free(map[i]);
+		free(map->map[i]);
 		i++;
 	}
-	free(map);
+	free(map->map);
 	i = 0;
-	while (i < info->height)
+	while (i < pi->height)
 	{
-		free(piece[i]);
+		free(pi->piece[i]);
 		i++;
 	}
-	free(piece);
+	free(pi->piece);
 	exit(0);
 }
 
 int		abs(int x)
 {
-	x *= -1 + (x > 0) * 2;
+	x *= 1 - (x < 0) * 2;
 	return (x);
 }
 
-int		get_min_dist(char **map, int ypiece, int xpiece, t_map *info)
+int		min_dist(t_map *map, int ypiece, int xpiece)
 {
 	int		dist;
 	int		x;
 	int		y;
 
 	y = 0;
-	dist = (info->height + info->width) / 2;
-	while (y < info->height)
+	dist = (map->height + map->width) / 2;
+	while (y < map->height)
 	{
 		x = 0;
-		while (x < info->width)
+		while (x < map->width)
 		{
-			if (map[y][x] == info->opponent && dist > abs((info->x + xpiece - x) * (info->y + ypiece - y)) / 2)
+			if (map->map[y][x] == map->opponent && dist >
+			abs(map->x + xpiece - x) + abs(map->y + ypiece - y))
 			{
-				//ft_printf("%d\n", abs((info->x + xpiece - x) * (info->y + ypiece - y)) / 2);
-				dist = abs((info->x + xpiece - x) * (info->y + ypiece - y)) / 2;
+				dist = abs(map->x + xpiece - x) +
+				abs(map->y + ypiece - y);
 			}
 			x++;
 		}
 		y++;
 	}
-	//ft_printf("dist : %d\n", dist);
 	return (dist);
 }
 
-int		check_distance(char **map, char **piece, t_map *info)
+int		check_distance(t_map *map, t_piece *pi)
 {
 	int		ypiece;
 	int		xpiece;
@@ -73,13 +73,13 @@ int		check_distance(char **map, char **piece, t_map *info)
 
 	ypiece = 0;
 	tot_dist = 0;
-	while (ypiece < info->p_height)
+	while (ypiece < pi->height)
 	{
 		xpiece = 0;
-		while (xpiece < info->p_width)
+		while (xpiece < pi->width)
 		{
-			if (piece[ypiece][xpiece] == '*')
-				tot_dist += get_min_dist(map, ypiece, xpiece, info);
+			if (pi->piece[ypiece][xpiece] == '*')
+				tot_dist += min_dist(map, ypiece, xpiece);
 			xpiece++;
 		}
 		ypiece++;
@@ -87,38 +87,38 @@ int		check_distance(char **map, char **piece, t_map *info)
 	return (tot_dist);
 }
 
-int		algo_filler(char **piece, char **map, t_map *info)
+int		algo_filler(t_map *map, t_piece *pi)
 {
-	int		disp;
+	int		res;
 	int		tot_dist;
+	int		x_result;
+	int		y_result;
 
-	info->y = -info->p_height;
-	tot_dist = (info->height * info->width) / 2;
-	while (info->y < info->height)
+	map->y = -pi->height;
+	x_result = 0;
+	y_result = 0;
+	tot_dist = (map->height * map->width) / 2;
+	while (map->y < map->height)
 	{
-		info->x = -info->p_width;
-		while (info->x < info->width)
+		map->x = -pi->width;
+		while (map->x < map->width)
 		{
-			disp = place_piece(map, piece, info);
-			if (disp != 0)
+			res = place_piece(map, pi);
+			if (tot_dist > res && res != 0)
 			{
-				if (tot_dist > disp)
-				{
-					info->x_result = info->x;
-					info->y_result = info->y;
-					//ft_printf("%d %d %d %d\n", tot_dist, disp, info->x_result, info->y_result);
-					tot_dist = disp;
-				}
+				x_result = map->x;
+				y_result = map->y;
+				tot_dist = res;
 			}
-			info->x++;
+			map->x++;
 		}
-		info->y++;
+		map->y++;
 	}
-	ft_printf("%d %d\n", info->y_result, info->x_result);
+	ft_printf("%d %d\n", y_result, x_result);
 	return (0);
 }
 
-int		place_piece(char **map, char **piece, t_map *info)
+int		place_piece(t_map *map, t_piece *pi)
 {
 	int		ypiece;
 	int		xpiece;
@@ -126,32 +126,25 @@ int		place_piece(char **map, char **piece, t_map *info)
 
 	disp = 0;
 	ypiece = 0;
-	while (ypiece < info->p_height)
+	while (ypiece < pi->height)
 	{
 		xpiece = 0;
-		while (xpiece < info->p_width)
+		while (xpiece < pi->width)
 		{
-			//ft_printf("ypiece : %d | xpiece : %d | info->x : %d | info->y : %d\n", ypiece, xpiece, info->x, info->y);
-			if (piece[ypiece][xpiece] == '*')
+			if (pi->piece[ypiece][xpiece] == '*')
 			{
-				if (info->y + ypiece < 0 || info->x + xpiece < 0 || info->y + ypiece > info->height - 1 || info->x + xpiece > info->width - 1)
+				if (map->y + ypiece < 0 || map->x + xpiece < 0 || map->y +
+				ypiece > map->height - 1 || map->x + xpiece > map->width - 1
+				|| map->map[map->y + ypiece][map->x + xpiece] == map->opponent)
 					return (0);
-				//ft_printf("%c %c\n", piece[ypiece][xpiece], map[info->y + ypiece][info->x + xpiece]);
-				if (map[info->y + ypiece][info->x + xpiece] == info->player)
+				if (map->map[map->y + ypiece][map->x + xpiece] == map->player)
 					disp++;
-				if (map[info->y + ypiece][info->x + xpiece] == info->opponent)
-					return (0);
 			}
 			xpiece++;
 		}
 		ypiece++;
 	}
-	//ft_printf("%d\n", disp);
 	if (disp == 1)
-	{
-		//ft_printf("%d %d\n", info->y, info->x);
-		//ft_dprintf(fd, "%d %d\n", info->y, info->x);
-		return (check_distance(map, piece, info));
-	}
+		return (check_distance(map, pi));
 	return (0);
 }

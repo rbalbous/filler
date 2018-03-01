@@ -6,57 +6,65 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 16:31:35 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/21 14:43:51 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:21:57 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-char	**create_map(char **map, char *line, t_map *info)
+void		free_map(t_map *map)
 {
 	int		i;
-
+	
 	i = 0;
-	info->height = ft_atoi(line + 8);
-	//ft_printf("%d\n", info->height);
-	if (!(map = malloc(sizeof(*map) * (info->height + 1))))
-		return (NULL);
-	info->width = ft_atoi(line + 9 + ft_intlen(info->height));
-	//ft_printf("%d\n", info->width);
-	get_next_line(0, &line);
-	free(line);
-	while (i < info->height)
+	while (i < map->height)
 	{
-		get_next_line(0, &line);
-		map[i] = ft_strsub(line, 4, info->width);
-		//ft_printf("%d : %s\n", i, map[i]);
-		free(line);
+		free(map->map[i]);
 		i++;
 	}
-	map[i] = 0;
-	return (map);
+	free(map->map);
 }
 
-char		**get_map(char **map, char *line, t_map *info)
+int			create_map(t_map *map, char *line)
 {
 	int		i;
 
 	i = 0;
-	info->height = ft_atoi(line + 8);
-	//ft_printf("%d\n", info->height);
-	info->width = ft_atoi(line + 9 + ft_intlen(info->height));
-	//ft_printf("%d\n", info->width);
+	get_next_line(0, &line);
+	map->height = ft_atoi(line + 8);
+	if (!(map->map = malloc(sizeof(*map->map) * (map->height + 1))))
+		return (-1);
+	map->width = ft_atoi(line + 9 + ft_intlen(map->height));
 	free(line);
 	get_next_line(0, &line);
-	//ft_printf("%s", line);
 	free(line);
-	while (i < info->height)
+	while (i < map->height)
 	{
 		get_next_line(0, &line);
-		ft_strcpy(map[i], line + 4);
-		//ft_printf("%s\n", map[i]);
+		map->map[i] = ft_strsub(line, 4, map->width);
 		free(line);
 		i++;
 	}
-	return (map);
+	map->map[i] = 0;
+	return (1);
+}
+
+void		get_map(t_map *map, char *line)
+{
+	int		i;
+
+	i = 0;
+	get_next_line(0, &line);
+	map->height = ft_atoi(line + 8);
+	map->width = ft_atoi(line + 9 + ft_intlen(map->height));
+	free(line);
+	get_next_line(0, &line);
+	free(line);
+	while (i < map->height)
+	{
+		get_next_line(0, &line);
+		ft_strcpy(map->map[i], line + 4);
+		free(line);
+		i++;
+	}
 }

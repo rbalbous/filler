@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/24 17:04:48 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:21:37 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,29 @@
 
 int		main()
 {
-	t_map	info;
+	t_map	map;
+	t_piece	pi;
 	char	*line;
-	static char	**map = NULL;
-	static char	**piece = NULL;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	info = (t_map){0, 0, 0, 0, 0, 0, 0, 0, 'X', 'X'};
+	map = (t_map){NULL, 0, 0, 0, 0, 'X', 'X'};
+	pi = (t_piece){NULL, 0, 0};
 	get_next_line(0, &line);
 	if (ft_strcmp(line + 9, "p1") != 1)
-		info.player = 'O';
+		map.player = 'O';
 	else
-		info.opponent = 'O';
-	//ft_printf("%c %c\n", info.opponent, info.player);
+		map.opponent = 'O';
 	free(line);
 	while (1)
 	{
-		j = 0;
-		get_next_line(0, &line);
-		if (!map)
-		{
-			//ft_printf("map1\n");
-			map = create_map(map, line, &info);
-		}
+		if (!map.map)
+			create_map(&map, line);
 		else
-		{
-			//ft_printf("map2\n");
-			map = get_map(map, line, &info);
-		}
-		piece = create_piece(piece, line, &info);
-		algo_filler(piece, map, &info);
-		filler_break(map, piece, &info);
+			get_map(&map, line);
+		create_piece(&pi, line);
+		algo_filler(&map, &pi);
+		free_piece(&pi);
+		//filler_break(&map, &pi);
 	}
-	filler_break(piece, map, &info);
-	return (IWAN);
+	free_map(&map);
+	return (0);
 }

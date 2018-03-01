@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:49:43 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/24 16:46:53 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/02/25 15:51:25 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include <math.h>
 # include <wchar.h>
 # include <locale.h>
 # include <langinfo.h>

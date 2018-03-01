@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"filler.h": "c"
+		"filler.h": "c",
+		"ft_printf.h": "c"
 	}
 }
