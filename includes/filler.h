@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 17:09:05 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/16 20:09:31 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,23 @@
 # include <SDL.h>
 # include "ft_printf.h"
 
-# define BACKGROUND_DAY 0x00FFFFFF
+# define BACKGROUND_DAY 0xFFFFFF
 # define BACKGROUND_NIGHT 0x00000000
 # define P1_DAY 0xE60F00
 # define P1_NIGHT 0x9300AF
-# define P2_DAY 0x00FFE5
-# define P2_NIGHT 0x40FF00
+# define P2_DAY 0x1A1AFF
+# define P2_NIGHT 0x009933
 # define P1_LST_DAY 0xFF584D
 # define P1_LST_NIGHT 0xD91AFF
 # define P2_LST_DAY 0x99FFF5
 # define P2_LST_NIGHT 0x8CFF66
+
+# define R 0xb30000
+# define B 0x000099
+# define C 0x9999ff
+# define P 0xff9999
+# define G 0x78877e
+
 
 typedef	struct	s_map
 {
@@ -101,6 +108,7 @@ struct	s_affi
 	t_turn		*current;
 	Uint8		pause : 1;
 	Uint8		grid;
+	double		k;
 };
 
 union				u_color
@@ -122,12 +130,20 @@ int				min_dist(t_map *map, t_piece *pi);
 int				check_distance(t_map *map, t_piece *pi);
 
 
-t_parse			parser_visu(t_affi *affi, t_turn **current);
+t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
-void			check_map(t_affi *affi, t_parse *info, char **line);
+void			check_map(t_affi *disp, t_parse *info, char **line);
 void			check_players_header(t_parse *info, char **line);
 void			display_error(char *str);
 char			*ft_strcdup(const char *src, int c);
 void			next_line(int fd, char **line);
+void			draw_next(t_affi *disp, t_parse *info);
+void			draw_last(t_affi *disp, t_parse *info);
+void			put_rect(t_rect rect, Uint32 color, t_affi *disp);
+void			put_line(t_affi *disp, t_point start, t_point end, Uint32 color);
+int				ft_abs(int x);
+void			put_line(t_affi *disp, t_point start, t_point end, Uint32 color);
+void			put_pixel(int x, int y, Uint32 color, t_affi *disp);
+Uint32			get_color(t_color c1, t_color c2, double k);
 
 #endif

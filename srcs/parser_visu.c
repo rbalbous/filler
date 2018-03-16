@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:08:59 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 17:09:10 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:14:55 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_turn		*next_turn(t_turn *current, t_parse *info)
 	return (current);
 }
 
-t_parse		parser_visu(t_affi *affi, t_turn **current)
+t_parse		parser_visu(t_affi *disp, t_turn **current)
 {
 	t_turn		list;
 	t_parse		info;
@@ -99,7 +99,7 @@ t_parse		parser_visu(t_affi *affi, t_turn **current)
 	free(line);
 	next_line(0, &line);
 	free(line);
-	check_map(affi, &info, &line);
+	check_map(disp, &info, &line);
 	next_line(0, &line);
 	free(line);
 	get_start_points(&info, current);
