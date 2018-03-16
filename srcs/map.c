@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 16:31:35 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/01 16:15:11 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/15 15:50:51 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,34 @@ int			create_map(t_map *map, char *line)
 	return (1);
 }
 
+void		calc_over(t_map *map)
+{
+	int		tmp;
+
+	tmp = 0;
+	map->y = 0;
+	if (map->over == 0)
+	{
+		free_map(map);
+		exit(0);
+	}
+	while (map->y < map->height)
+	{
+		map->x = 0;
+		while (map->x < map->width)
+		{
+			if (map->map[map->y][map->x] == map->opponent)
+				tmp++;
+			map->x++;
+		}
+		map->y++;
+	}
+	if (tmp > map->over)
+		map->over = tmp;
+	else
+		map->over = 0;
+}
+
 void		get_map(t_map *map, char *line)
 {
 	int		i;
@@ -67,4 +95,5 @@ void		get_map(t_map *map, char *line)
 		free(line);
 		i++;
 	}
+	calc_over(map);
 }

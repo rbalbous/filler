@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:49:43 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/02/25 15:51:25 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/14 16:49:11 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # include <locale.h>
 # include <langinfo.h>
 # include <nl_types.h>
-#include <time.h>
+# include <time.h>
+# include <math.h>
 # include "libft.h"
 
 # define BUFF_SIZE 4096
