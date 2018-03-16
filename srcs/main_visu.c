@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:13:55 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 21:24:04 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/16 21:47:45 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int			main(void)
     if (!(last = ft_memalloc(sizeof(t_turn) + 1)))
 		display_error("malloc error");
 	info = parser_visu(&disp, &current);
-	disp.pause = 0;
+	disp.pause = 1;
 	disp.grid = 0;
 	disp.k = 0.;
 	i = -1;
