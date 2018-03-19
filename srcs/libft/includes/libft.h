@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/29 16:48:47 by home              #+#    #+#             */
-/*   Updated: 2018/01/24 18:19:32 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/19 00:22:45 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int				ft_tablen(char **str);
 char			**ft_strsplitfree(const char *s, char c);
 char			*ft_strjoinfree(char const *s1, char const *s2, int n);
 int				get_next_line(const int fd, char **line);
+char			*ft_strnchr(const char *str, int c, size_t len);
 
 #endif

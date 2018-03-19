@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 20:09:31 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/17 13:55:41 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <SDL.h>
+# include <SDL_ttf.h>
 # include "ft_printf.h"
 
 # define BACKGROUND_DAY 0xFFFFFF
@@ -23,7 +24,7 @@
 # define P1_NIGHT 0x9300AF
 # define P2_DAY 0x1A1AFF
 # define P2_NIGHT 0x009933
-# define P1_LST_DAY 0xFF584D
+# define P1_LST_DAY 0xffCCCC
 # define P1_LST_NIGHT 0xD91AFF
 # define P2_LST_DAY 0x99FFF5
 # define P2_LST_NIGHT 0x8CFF66

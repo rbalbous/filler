@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:13:55 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 21:24:04 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/17 13:54:11 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void		clean_quit(t_affi *disp)
 {
 	SDL_FreeSurface(disp->surface);
 	SDL_DestroyWindow(disp->win);
-    SDL_Quit();
+	TTF_Quit();
+	SDL_Quit();
 	exit (0);
 }
  
@@ -55,7 +56,7 @@ int			get_event(t_affi *disp, t_parse *info, t_turn *first, t_turn *last)
 			draw_next(disp, info);
 			disp->pause = 0;
 		}
-		else if (disp->event.key.keysym.sym == SDLK_KP_MINUS)
+		else if (disp->event.key.keysym.sym == SDLK_o)
 		{
 			if (disp->k > 0.1)
 			{
@@ -66,7 +67,7 @@ int			get_event(t_affi *disp, t_parse *info, t_turn *first, t_turn *last)
 					draw_next(disp, info);
 			}
 		}
-		else if (disp->event.key.keysym.sym == SDLK_KP_PLUS)
+		else if (disp->event.key.keysym.sym == SDLK_p)
 		{
 			if (disp->k < 0.8)
 			{
@@ -125,7 +126,7 @@ void		get_win_infos(t_parse *info, t_affi *disp)
 		disp->win_height = (disp->pixel + 1) * info->map_height + 1;
 		disp->win_width = (disp->pixel + 1) * info->map_width + 1;
 	}
-	while (disp->win_height > 1400 || disp->win_width > 1400)
+	while (disp->win_height > 900 || disp->win_width > 900)
 	{
 		disp->pixel--;
 		disp->win_height = (disp->pixel + 1) * info->map_height + 1;
@@ -140,17 +141,21 @@ int			main(void)
 	t_turn		*first;
 	t_turn		*last;
 	t_turn		*current;
+	TTF_Font	*font;
 	char		str[200];
 	int			i;
+	SDL_Color	color = {255, 255, 255, 255};
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		exit(0);
+		display_error("Error : Init");
+	if (TTF_Init() < 0)
+		display_error("Error : Init");
     if (!(first = ft_memalloc(sizeof(t_turn) + 1)))
 		display_error("malloc error");
     if (!(last = ft_memalloc(sizeof(t_turn) + 1)))
 		display_error("malloc error");
 	info = parser_visu(&disp, &current);
-	disp.pause = 0;
+	disp.pause = 1;
 	disp.grid = 0;
 	disp.k = 0.;
 	i = -1;
@@ -160,6 +165,7 @@ int			main(void)
 	current->prev = first;
 	disp.current = first;
 	last = first;
+	font = NULL;
 	get_win_infos(&info, &disp);
 	ft_sprintf(str, "%s vs %s", info.p1, info.p2);
 	if (!(disp.win = SDL_CreateWindow(str, SDL_WINDOWPOS_CENTERED,

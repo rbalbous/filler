@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/03/16 17:30:22 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/03/17 12:05:13 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(NAME) :	$(LIB) $(OBJ)
 			$(CC) -o $@ $^ $(FLAGS)
 
 $(VISU) :	$(LIB) $(VISU_OBJ)
-			$(CC) -o $@ $^ $(FLAGS) -L ~/.brew/lib/ -lsdl2 -I ~/.brew/include/SDL2
+			$(CC) -o $@ $^ $(FLAGS) -L ~/.brew/lib/ -lsdl2 -lsdl2_ttf -I ~/.brew/include/SDL2
 
 $(LIB) :
 			make -C $(LIB_PATH)
