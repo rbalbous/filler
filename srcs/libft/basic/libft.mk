@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 22:03:07 by rbalbous          #+#    #+#              #
-#    Updated: 2018/01/24 17:53:51 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/03/18 21:00:49 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIB = 		ft_strcat.c ft_strcpy.c ft_strdup.c ft_strlcat.c ft_strlen.c \
 			ft_lstiter.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstnew.c \
 			ft_lstaddlast.c ft_strjoinfree.c ft_max.c ft_min.c ft_memacpy.c \
 			ft_sort_int.c ft_puterror.c ft_countwords.c ft_putitab.c \
-			ft_putstab.c ft_tablen.c ft_intlen.c ft_strsplitfree.c get_next_line.c
+			ft_putstab.c ft_tablen.c ft_intlen.c ft_strsplitfree.c get_next_line.c \
+			ft_strnchr.c
 LIB_PATH = basic
 OBJ += $(addprefix $(OBJ_PATH)/, $(LIB:.c=.o))
 
