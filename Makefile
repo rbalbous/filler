@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/03/17 12:05:13 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/03/19 14:46:15 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ $(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c $(INCLUDES)/filler.h
 clean :
 			make -C $(LIB_PATH) clean
 			rm -f $(OBJ)
+			rm -f $(VISU_OBJ)
 
 fclean :	clean
 			rm -f $(NAME)

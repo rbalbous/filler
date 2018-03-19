@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:08:59 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 17:14:55 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:53:57 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		get_start_points(t_parse *info, t_turn **current)
 		display_error("malloc error");
 	(*current)->next = NULL;
 	(*current)->prev = NULL;
+	(*current)->turn_nb = 1;
 	while (i < info->map_height)
 	{
 		next_line(0, &(*current)->map[i]);
@@ -79,6 +80,7 @@ t_turn		*next_turn(t_turn *current, t_parse *info)
 	new->next = NULL;
 	new->prev = current;
 	current->next = new;
+	new->turn_nb = current->turn_nb + 1;
 	if (!(new->map = malloc(sizeof(char*) * (info->map_height + 1))))
 		display_error("malloc error");
 	while (++i < info->map_height)
