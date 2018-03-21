@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:08:59 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/19 18:53:57 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:31:07 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		get_start_points(t_parse *info, t_turn **current)
 		display_error("malloc error");
 	(*current)->next = NULL;
 	(*current)->prev = NULL;
-	(*current)->turn_nb = 1;
+	(*current)->turn_nb_p1 = 1;
+	(*current)->turn_nb_p2 = 1;
 	while (i < info->map_height)
 	{
 		next_line(0, &(*current)->map[i]);
@@ -32,62 +33,19 @@ void		get_start_points(t_parse *info, t_turn **current)
 	(*current)->map[i] = 0;
 }
 
-void		skip(char **line)
+void		next_line(int fd, char **line)
 {
-	int		i;
-	int		pi_height;
+	if (get_next_line(fd, line) == -1)
+		display_error("Read error");
+}
 
-	i = 0;
-	pi_height = ft_atoi(*line + 6);
-	free(*line);
-	while (i < pi_height + 1)
-	{
-		next_line(0, line);
+void		new_line(char **line, int i)
+{
+	if (i == 0 || i == 1)
 		free(*line);
-		i++;
-	}
 	next_line(0, line);
-}
-
-int			check_link(t_parse *info, char *line)
-{
-	next_line(0, &line);
-	while (ft_strncmp("Piece", line, 5) == 0)
-		skip(&line);
-	free(line);
-	next_line(0, &line);
-	if (ft_strncmp("==", line, 2) == 0)
-	{
-		free(line);
-		info->parse_finished = 1;
-		return (0);
-	}
-	free(line);
-	return (1);
-}
-
-t_turn		*next_turn(t_turn *current, t_parse *info)
-{
-	t_turn		*new;
-	char		*line;
-	int			i;
-
-	i = -1;
-	if (!check_link(info, line))
-		return (NULL);
-	if (!(new = malloc(sizeof(t_turn) * 1)))
-		display_error("malloc error");
-	new->next = NULL;
-	new->prev = current;
-	current->next = new;
-	new->turn_nb = current->turn_nb + 1;
-	if (!(new->map = malloc(sizeof(char*) * (info->map_height + 1))))
-		display_error("malloc error");
-	while (++i < info->map_height)
-		next_line(0, &new->map[i]);
-	new->map[i] = 0;
-	current = new;
-	return (current);
+	if (i == 0 || i == 2)
+		free(*line);
 }
 
 t_parse		parser_visu(t_affi *disp, t_turn **current)
@@ -95,9 +53,11 @@ t_parse		parser_visu(t_affi *disp, t_turn **current)
 	t_turn		list;
 	t_parse		info;
 	char		*line;
+	int			i;
 
+	i = -1;
 	info.parse_finished = 0;
-	check_players_header(&info, &line);
+	check_players_header(&info, &line, i);
 	free(line);
 	next_line(0, &line);
 	free(line);

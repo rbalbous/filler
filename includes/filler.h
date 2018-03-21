@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/19 18:48:58 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:37:23 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # define BACKGROUND_DAY 0x000000
 # define BACKGROUND_NIGHT 0x000000
 # define P1_DAY 0xE60F00
-# define P1_NIGHT 0x9300AF
+# define P1_NIGHT 0x800080
 # define P2_DAY 0x1A1AFF
-# define P2_NIGHT 0x00CC00
+# define P2_NIGHT 0x00cc00
 # define P1_LST_DAY 0xffCCCC
-# define P1_LST_NIGHT 0xD91AFF
+# define P1_LST_NIGHT 0xffccff
 # define P2_LST_DAY 0x99FFF5
 # define P2_LST_NIGHT 0x99FF99
 
@@ -70,6 +70,8 @@ struct	s_parse
 {
 	char	*p1;
 	char	*p2;
+	int		p1_len;
+	int		p2_len;
 	int		map_height;
 	int		map_width;
 	int		parse_finished;
@@ -84,7 +86,8 @@ struct s_point
 struct	s_turn
 {
 	char	**map;
-	int		turn_nb;
+	int		turn_nb_p1;
+	int		turn_nb_p2;
 	t_turn	*next;
 	t_turn	*prev;
 };
@@ -111,6 +114,7 @@ struct	s_affi
 	t_point		start_x;
 	t_point		start_o;
 	t_turn		*current;
+	t_turn		*first;
 	Uint8		pause : 1;
 	Uint8		grid;
 	int			last_event;
@@ -140,7 +144,7 @@ int				check_distance(t_map *map, t_piece *pi);
 t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
 void			check_map(t_affi *disp, t_parse *info, char **line);
-void			check_players_header(t_parse *info, char **line);
+void			check_players_header(t_parse *info, char **line, int i);
 void			display_error(char *str);
 char			*ft_strcdup(const char *src, int c);
 void			next_line(int fd, char **line);
@@ -152,5 +156,11 @@ int				ft_abs(int x);
 void			put_line(t_affi *disp, t_point start, t_point end, Uint32 color);
 void			put_pixel(int x, int y, Uint32 color, t_affi *disp);
 Uint32			get_color(t_color c1, t_color c2, double k);
+void			new_line(char	**line, int i);
+int				get_event(t_affi *disp, t_parse *info, t_turn *first);
+void			put_score(t_affi *disp, t_parse *info);
+void			put_colors(t_affi *disp, int x, int y);
+void			clean_quit(t_affi *disp);
+SDL_Color		color_conv(unsigned int hexvalue);
 
 #endif

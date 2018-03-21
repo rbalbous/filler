@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 16:31:35 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/19 00:57:08 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:26:51 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			create_map(t_map *map, char *line)
 	get_next_line(0, &line);
 	map->height = ft_atoi(line + 8);
 	if (!(map->map = malloc(sizeof(*map->map) * (map->height + 1))))
-		return (-1);
+		display_error("malloc error");
 	map->width = ft_atoi(line + 9 + ft_intlen(map->height));
 	free(line);
 	get_next_line(0, &line);
@@ -48,34 +48,6 @@ int			create_map(t_map *map, char *line)
 	map->map[i] = 0;
 	return (1);
 }
-
-/*void		calc_over(t_map *map)
-{
-	int		tmp;
-
-	tmp = 0;
-	map->y = 0;
-	if (map->over == 0)
-	{
-		free_map(map);
-		exit(0);
-	}
-	while (map->y < map->height)
-	{
-		map->x = 0;
-		while (map->x < map->width)
-		{
-			if (map->map[map->y][map->x] == map->opponent)
-				tmp++;
-			map->x++;
-		}
-		map->y++;
-	}
-	if (tmp > map->over)
-		map->over = tmp;
-	else
-		map->over = 0;
-}*/
 
 void		get_map(t_map *map, char *line)
 {
@@ -95,5 +67,4 @@ void		get_map(t_map *map, char *line)
 		free(line);
 		i++;
 	}
-	//calc_over(map);
 }

@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/03/19 14:46:15 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/03/21 20:31:21 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,11 @@ VISU_PATH = srcs
 VISU_SRCS = main_visu.c \
 			parser_visu.c \
 			check_error_visu.c \
-			added_function_visu.c \
-			put_visu.c
+			put_visu.c \
+			list_visu.c \
+			event_visu.c \
+			fct_visu.c \
+			draw_visu.c
 VISU_OBJ = $(addprefix $(OBJ_PATH)/, $(VISU_SRCS:.c=.o))
 
 INCLUDES = includes

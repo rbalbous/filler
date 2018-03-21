@@ -6,31 +6,16 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 15:45:45 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/16 17:14:55 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:30:51 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-char		*ft_strcdup(const char *src, int c)
+void		display_error(char *str)
 {
-	char	*dest;
-	int		i;
-	int		j;
-
-	i = -1;
-	while (src[++i])
-	{
-		if (src[i] == c)
-			break ;
-	}
-	if ((dest = (char*)malloc(sizeof(*dest) * i + 1)) == 0)
-		return (0);
-	j = -1;
-	while (++j < i)
-		dest[j] = src[j];
-	dest[i] = '\0';
-	return (dest);
+	ft_dprintf(2, "%s\n", str);
+	exit(0);
 }
 
 static char g_header[5][49] = {
@@ -41,11 +26,8 @@ static char g_header[5][49] = {
 	"# -------------------------------------------- #"
 };
 
-void		check_players_header(t_parse *info, char **line)
+void		check_players_header(t_parse *info, char **line, int i)
 {
-	int		i;
-
-	i = -1;
 	while (++i < 5)
 	{
 		if (get_next_line(0, line) == -1 || ft_strcmp(*line, g_header[i]) != 0)
@@ -60,6 +42,7 @@ void		check_players_header(t_parse *info, char **line)
 		if (!(info->p1 = ft_strcdup(strrchr(*line, '/') + 1, '.')))
 			display_error("malloc error");
 	}
+	info->p1_len = ft_strlen(info->p1);
 	free(*line);
 	next_line(0, line);
 	free(*line);
@@ -68,6 +51,7 @@ void		check_players_header(t_parse *info, char **line)
 		display_error("Bad player 2");
 	else
 		info->p2 = ft_strcdup(strrchr(*line, '/') + 1, '.');
+	info->p2_len = ft_strlen(info->p2);
 }
 
 void		check_map(t_affi *disp, t_parse *info, char **line)

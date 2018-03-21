@@ -6,11 +6,17 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/19 00:56:45 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:30:00 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void		display_error(char *str)
+{
+	ft_dprintf(2, "%s\n", str);
+	exit(0);
+}
 
 int		main(void)
 {
@@ -31,8 +37,7 @@ int		main(void)
 		if (map.map)
 			get_map(&map, line);
 		else
-			if (create_map(&map, line) == -1)
-				return (-1);
+			create_map(&map, line);
 		create_piece(&pi, line);
 		algo_filler(&map, &pi);
 		free_piece(&pi);

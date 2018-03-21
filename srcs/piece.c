@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:14:57 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/19 00:56:40 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:27:20 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		create_piece(t_piece *pi, char *line)
 	get_next_line(0, &line);
 	pi->height = ft_atoi(line + 6);
 	if (!(pi->piece = malloc(sizeof(*pi->piece) * (pi->height + 1))))
-		return (-1);
+		display_error("malloc error");
 	pi->width = ft_atoi(line + 7 + ft_intlen(pi->height));
 	free(line);
 	while (i < pi->height)
