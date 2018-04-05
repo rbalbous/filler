@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 21:50:54 by rbalbous          #+#    #+#              #
-#    Updated: 2018/01/24 16:54:19 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/05 14:22:34 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ FLAGS_OTH_PATH = $(addprefix ft_printf/flags/others/, $(OTH))
 OBJ += $(addprefix $(OBJ_PATH)/, $(OTH:.c=.o))
 
 $(OBJ_PATH)/%.o : $(LEN_PATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(OTH_PATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)

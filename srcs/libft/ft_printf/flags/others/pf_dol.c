@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 19:34:08 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/14 21:44:03 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/04 18:13:38 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ int		pf_none(t_flags *flags, t_var *var, t_uint8 *str)
 	if (str[var->index] == '%')
 		return (-1);
 	return (0);
+}
+
+int		pf_dol_f(t_flags *flags, t_var *var, t_uint8 *str)
+{
+	(void)flags;
+	if (str[var->index - 1] == 'L')
+		return ('F');
+	return ('f');
 }

@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 21:09:17 by rbalbous          #+#    #+#              #
-#    Updated: 2018/03/19 01:13:41 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/05 14:22:21 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,21 +77,20 @@ OBJ += $(addprefix $(OBJ_PATH)/, $(CONVB:.c=.o))
 
 CONVF =		pf_f.c \
 			pf_cap_f.c \
-			pf_cap_fl.c \
 			pf_fl.c
 FPATH = ft_printf/conv/f
 CONVF_PATH = $(addprefix ft_printf/conv/f/, $(CONVF))
 OBJ += $(addprefix $(OBJ_PATH)/, $(CONVF:.c=.o))
 
 CONVE =		pf_e.c \
-			pf_le.c \
-			pf_cap_e.c \
-			pf_cap_le.c
+			pf_cap_e.c
 EPATH = ft_printf/conv/e
 CONVE_PATH = $(addprefix ft_printf/conv/e/, $(CONVE))
 OBJ += $(addprefix $(OBJ_PATH)/, $(CONVE:.c=.o))
 
-CONVG =		pf_g.c
+CONVG =		pf_g.c \
+			pf_ge.c \
+			pf_gf.c
 GPATH = ft_printf/conv/g
 CONVG_PATH = $(addprefix ft_printf/conv/g/, $(CONVG))
 OBJ += $(addprefix $(OBJ_PATH)/, $(CONVG:.c=.o))
@@ -138,49 +137,49 @@ OBJ += $(addprefix $(OBJ_PATH)/, $(CONVW:.c=.o))
 
 $(OBJ_PATH)/%.o : $(SPATH)/%.c $(INCLUDES)/ft_printf.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(CPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(DPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)		
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)		
 
 $(OBJ_PATH)/%.o : $(UPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(OPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(XPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(BPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(FPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(NPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(EPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(GPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(APATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(RPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(KPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 
 $(OBJ_PATH)/%.o : $(MPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
 	
 $(OBJ_PATH)/%.o : $(WPATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)

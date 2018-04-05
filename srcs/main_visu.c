@@ -6,11 +6,25 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:13:55 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:27:34 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:01:35 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void		free_curr(t_turn *current, t_parse *info)
+{
+	int		i;
+
+	i = 0;
+	while (i < info->map_height)
+	{
+		free(current->map[i]);
+		i++;
+	}
+	free(current->map[i]);
+	free(current);
+}
 
 void		get_win_infos(t_parse *info, t_affi *disp)
 {
@@ -78,7 +92,8 @@ void		init_disp(t_affi *disp, t_turn **current)
 	disp->grid = 0;
 	disp->k = 0.;
 	disp->last_event = 0;
-	disp->font = TTF_OpenFont("arial.ttf", disp->font_size);
+	disp->tinsel = 0;
+	disp->font = TTF_OpenFont("srcs/arial.ttf", disp->font_size);
 	if (!(disp->win = SDL_CreateWindow("Filler Visu", SDL_WINDOWPOS_CENTERED,
 	SDL_WINDOWPOS_CENTERED, disp->win_width, disp->win_height + 100
 	, SDL_WINDOW_SHOWN)))
@@ -110,6 +125,7 @@ int			main(void)
 	(t_point){disp.win_width, disp.win_height + 2}, 0x404040);
 	put_score(&disp, &info);
 	SDL_GL_SetSwapInterval(1);
-	make_it_loop(disp, info, current, -1);
+	make_it_loop(disp, info, disp.current, -1);
+	free_curr(current, &info);
 	clean_quit(&disp);
 }

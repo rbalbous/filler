@@ -6,13 +6,13 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:30:00 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/05 14:30:48 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void		display_error(char *str)
+void	display_error(char *str)
 {
 	ft_dprintf(2, "%s\n", str);
 	exit(0);

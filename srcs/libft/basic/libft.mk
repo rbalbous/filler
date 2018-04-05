@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 22:03:07 by rbalbous          #+#    #+#              #
-#    Updated: 2018/03/18 21:00:49 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/05 14:21:51 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,4 +31,4 @@ LIB_PATH = basic
 OBJ += $(addprefix $(OBJ_PATH)/, $(LIB:.c=.o))
 
 $(OBJ_PATH)/%.o : $(LIB_PATH)/%.c $(INCLUDES)/ft_printf.h
-	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)
+	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)

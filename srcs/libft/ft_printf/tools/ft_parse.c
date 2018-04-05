@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:17:57 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/16 18:47:14 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/04 15:24:29 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		pf_initflags(t_flags *flags)
 	flags->len = 0;
 	flags->bigl = 0;
 	flags->conv = none;
-	flags->g = 0;
 	return (0);
 }
 

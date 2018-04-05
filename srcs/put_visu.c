@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:11:09 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 19:57:18 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:33:02 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,13 @@ void		put_score(t_affi *disp, t_parse *info)
 	disp->message2 = TTF_RenderText_Solid(disp->font, str2,
 	color_conv(get_color((t_color){P2_DAY}, (t_color){P2_NIGHT}, disp->k)));
 	SDL_BlitSurface(disp->message, NULL, disp->surface, &(SDL_Rect)
-	{((disp->win_width / 2) - info->p1_len * disp->font_size) / 2 +
-	disp->win_width / 2, disp->win_height + ((100 - disp->font_size) / 2),
+	{(((disp->win_width + 6 * disp->pixel) / 2) -
+	info->p1_len * disp->font_size) / 2 + disp->win_width / 2,
+	disp->win_height + ((100 - disp->font_size) / 2),
 	disp->win_width, 100});
 	SDL_BlitSurface(disp->message2, NULL, disp->surface, &(SDL_Rect)
-	{((disp->win_width / 2) - info->p2_len) / 2, disp->win_height +
-	((100 - disp->font_size) / 2), disp->win_width, 100});
+	{(((disp->win_width - 6 * disp->pixel) / 2) - info->p2_len) / 2,
+	disp->win_height + ((100 - disp->font_size) / 2), disp->win_width, 100});
+	SDL_FreeSurface(disp->message);
+	SDL_FreeSurface(disp->message2);
 }

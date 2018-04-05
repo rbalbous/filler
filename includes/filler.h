@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:37:23 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/23 18:36:59 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@
 # define P 0xff9999
 # define G 0x78877e
 
+typedef	struct	s_algo
+{
+	char	type;
+	int		dist;
+	int		belong;
+}				t_algo;
 
 typedef	struct	s_map
 {
@@ -120,6 +126,7 @@ struct	s_affi
 	int			last_event;
 	double		k;
 	int			font_size;
+	int			tinsel;
 };
 
 union				u_color
@@ -162,5 +169,6 @@ void			put_score(t_affi *disp, t_parse *info);
 void			put_colors(t_affi *disp, int x, int y);
 void			clean_quit(t_affi *disp);
 SDL_Color		color_conv(unsigned int hexvalue);
+void			disp_tinsel(t_affi *disp, t_parse *info);
 
 #endif

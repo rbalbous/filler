@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:36:00 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/01/15 16:27:25 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:55:16 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,27 @@ int		len_four(wint_t c, t_var *var)
 int		pf_cap_c(t_flags *flags, t_var *var, va_list ap)
 {
 	wint_t		c;
-	char		width;
 	static int	(*u[4])() = {len_one, len_two, len_three, len_four};
 
 	c = va_arg(ap, wint_t);
-	if (c > 0x10ffff || (0xd800 <= c && 0xdfff >= c) || c < 0)
+	if (c > 0x10ffff || (0xd800 <= c && 0xdfff >= c) || c < 0
+	|| (MB_CUR_MAX == 1 && c > 255))
 		return (-1);
 	flags->len = 1 * (!(c >> (7 + (MB_CUR_MAX == 1))));
 	flags->len += 2 * (!(c >> 11) && !flags->len);
 	flags->len += 3 * (!(c >> 16) && !flags->len);
 	flags->len += 4 * (!(c >> 21) && !flags->len);
-	width = ' ' + 16 * (flags->zero);
 	flags->fwidth -= flags->len;
 	flags->fwidth *= (flags->fwidth > 0);
 	if (flags->minus == 0)
 	{
-		flags->fwidth = addmchar(width, var, flags->fwidth);
+		flags->fwidth = addmchar(' ' + 16 * (flags->zero), var, flags->fwidth);
 		u[flags->len - 1](c, var);
 	}
 	else
 	{
 		u[flags->len - 1](c, var);
-		flags->fwidth = addmchar(width, var, flags->fwidth);
+		flags->fwidth = addmchar(' ' + 16 * (flags->zero), var, flags->fwidth);
 	}
 	return (0);
 }

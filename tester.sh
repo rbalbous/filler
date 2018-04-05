@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 18:19:49 by jafaghpo          #+#    #+#              #
-#    Updated: 2018/03/01 16:58:55 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/05 15:14:25 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ do
 	if echo "\e;30[40m$result" | grep -q "$plr1"
 	then
 		((p1++))
-		printf "$HIGH$BLUE>"
+		printf "$HIGH$BLUE<"
 	else
 		((p2++))
 		printf "$HIGH$RED>"

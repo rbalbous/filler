@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 18:00:45 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:23:17 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:01:08 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void		change_color(t_affi *disp, t_parse *info, int add)
 			draw_last(disp, info);
 		put_score(disp, info);
 	}
-	else
-		SDL_FlushEvent(SDL_KEYDOWN);
 }
 
 void		disp_next(t_affi *disp, t_parse *info)
@@ -84,7 +82,7 @@ int			get_event(t_affi *disp, t_parse *info, t_turn *first)
 		else if (disp->event.key.keysym.sym == SDLK_LEFT)
 			disp_last(disp, info);
 		else if (disp->event.key.keysym.sym == SDLK_SPACE)
-			disp->pause = (disp->pause == 0) ? 1 : 0;
+			disp->pause = (disp->pause == 0);
 		else
 			return (0);
 	}

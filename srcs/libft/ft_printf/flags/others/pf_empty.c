@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 17:09:57 by rbalbous          #+#    #+#             */
-/*   Updated: 2017/12/30 13:35:58 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/03/04 00:05:04 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int		pf_empty_x(t_flags *flags, t_var *var, t_uint8 *str)
 	if (flags->minus)
 	{
 		if (str[var->index] == 'p')
-			addstr("0x", var);
+			addnstr("0x", 2, var);
 		flags->fwidth = addmchar(' ', var, flags->fwidth);
 	}
 	else
 	{
 		flags->fwidth = addmchar(' ', var, flags->fwidth);
 		if (str[var->index] == 'p')
-			addstr("0x", var);
+			addnstr("0x", 2, var);
 	}
 	return (0);
 }
