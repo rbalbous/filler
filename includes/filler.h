@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/23 18:36:59 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/06 11:50:56 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
 # include <SDL_ttf.h>
 # include "ft_printf.h"
 
-# define BACKGROUND_DAY 0x000000
-# define BACKGROUND_NIGHT 0x000000
-# define P1_DAY 0xE60F00
-# define P1_NIGHT 0x800080
-# define P2_DAY 0x1A1AFF
-# define P2_NIGHT 0x00cc00
-# define P1_LST_DAY 0xffCCCC
-# define P1_LST_NIGHT 0xffccff
-# define P2_LST_DAY 0x99FFF5
-# define P2_LST_NIGHT 0x99FF99
+# define BACKGROUND_DAY		0x000000
+# define BACKGROUND_NIGHT	0x000000
+# define P1_DAY				0xE60F00
+# define P1_NIGHT			0x800080
+# define P2_DAY				0x1A1AFF
+# define P2_NIGHT			0x00cc00
+# define P1_LST_DAY			0xffCCCC
+# define P1_LST_NIGHT		0xffccff
+# define P2_LST_DAY			0x99FFF5
+# define P2_LST_NIGHT		0x99FF99
 
-# define R 0xb30000
-# define B 0x000099
-# define C 0x9999ff
-# define P 0xff9999
-# define G 0x78877e
+# define R	0xb30000
+# define B	0x000099
+# define C	0x9999ff
+# define P	0xff9999
+# define G	0x78877e
 
 typedef	struct	s_algo
 {
@@ -65,14 +65,14 @@ typedef struct	s_piece
 	int		y_result;
 }				t_piece;
 
-typedef	struct	s_turn	t_turn;
-typedef struct	s_rect	t_rect;
-typedef struct	s_point	t_point;
-typedef struct	s_parse	t_parse;
-typedef	union	u_color	t_color;
-typedef	struct	s_affi	t_affi;
+typedef	struct s_turn	t_turn;
+typedef struct s_rect	t_rect;
+typedef struct s_point	t_point;
+typedef struct s_parse	t_parse;
+typedef	struct s_affi	t_affi;
+typedef	union u_color	t_color;
 
-struct	s_parse
+struct			s_parse
 {
 	char	*p1;
 	char	*p2;
@@ -83,13 +83,13 @@ struct	s_parse
 	int		parse_finished;
 };
 
-struct s_point
+struct			s_point
 {
 	int		x;
 	int		y;
 };
 
-struct	s_turn
+struct			s_turn
 {
 	char	**map;
 	int		turn_nb_p1;
@@ -98,7 +98,7 @@ struct	s_turn
 	t_turn	*prev;
 };
 
-struct	s_rect
+struct			s_rect
 {
 	int		x;
 	int		y;
@@ -106,7 +106,7 @@ struct	s_rect
 	int		width;
 };
 
-struct	s_affi
+struct			s_affi
 {
 	SDL_Window	*win;
 	SDL_Event	event;
@@ -129,7 +129,7 @@ struct	s_affi
 	int			tinsel;
 };
 
-union				u_color
+union			u_color
 {
 	int				color;
 	unsigned char	rgb[4];
@@ -147,7 +147,6 @@ int				place_piece(t_map *map, t_piece *pi);
 int				min_dist(t_map *map, t_piece *pi);
 int				check_distance(t_map *map, t_piece *pi);
 
-
 t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
 void			check_map(t_affi *disp, t_parse *info, char **line);
@@ -158,9 +157,11 @@ void			next_line(int fd, char **line);
 void			draw_next(t_affi *disp, t_parse *info);
 void			draw_last(t_affi *disp, t_parse *info);
 void			put_rect(t_rect rect, Uint32 color, t_affi *disp);
-void			put_line(t_affi *disp, t_point start, t_point end, Uint32 color);
+void			put_line(t_affi *disp, t_point start, t_point end
+, Uint32 color);
 int				ft_abs(int x);
-void			put_line(t_affi *disp, t_point start, t_point end, Uint32 color);
+void			put_line(t_affi *disp, t_point start, t_point end
+, Uint32 color);
 void			put_pixel(int x, int y, Uint32 color, t_affi *disp);
 Uint32			get_color(t_color c1, t_color c2, double k);
 void			new_line(char	**line, int i);
