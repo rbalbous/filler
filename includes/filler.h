@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/06 11:50:56 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/06 15:22:54 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,22 @@
 # define P	0xff9999
 # define G	0x78877e
 
-typedef	struct	s_algo
-{
-	char	type;
-	int		dist;
-	int		belong;
-}				t_algo;
+typedef struct s_piece	t_piece;
+typedef	struct s_map	t_map;
+typedef	struct s_plyr	t_player;
+typedef	struct s_turn	t_turn;
+typedef struct s_dots	t_dots;
+typedef struct s_rect	t_rect;
+typedef struct s_point	t_point;
+typedef struct s_parse	t_parse;
+typedef	struct s_affi	t_affi;
+typedef	union u_color	t_color;
 
-typedef	struct	s_map
+struct			s_map
 {
 	char	**map;
+	t_dots	**al_map;
+	t_dots	**tmp_map;
 	int		height;
 	int		width;
 	int		x;
@@ -52,9 +58,9 @@ typedef	struct	s_map
 	char	player;
 	char	opponent;
 	int		over;
-}				t_map;
+};
 
-typedef struct	s_piece
+struct			s_piece
 {
 	char	**piece;
 	int		height;
@@ -63,14 +69,21 @@ typedef struct	s_piece
 	int		y;
 	int		x_result;
 	int		y_result;
-}				t_piece;
+};
 
-typedef	struct s_turn	t_turn;
-typedef struct s_rect	t_rect;
-typedef struct s_point	t_point;
-typedef struct s_parse	t_parse;
-typedef	struct s_affi	t_affi;
-typedef	union u_color	t_color;
+struct			s_dots
+{
+	int			dist;
+	int			belong;
+};
+
+struct			s_plyr
+{
+	int			x;
+	int			y;
+	char		belong;
+	t_player	*next;
+};
 
 struct			s_parse
 {
@@ -146,6 +159,8 @@ int				algo_filler(t_map *map, t_piece *pi);
 int				place_piece(t_map *map, t_piece *pi);
 int				min_dist(t_map *map, t_piece *pi);
 int				check_distance(t_map *map, t_piece *pi);
+
+void			init_list(t_map *map);
 
 t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
