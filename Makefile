@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/04/06 14:39:58 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/07 18:40:34 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS =	main.c \
 		filler.c \
 		map.c \
 		piece.c \
-		filler_algo.c
+		filler_init.c \
+		filler_algo.c \
+		update_map.c
 SRCS_PATH = srcs
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
 OBJ_PATH = obj

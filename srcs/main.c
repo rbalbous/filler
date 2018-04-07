@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/06 15:13:31 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/07 23:23:15 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(void)
 	t_piece	pi;
 	char	*line;
 
-	map = (t_map){NULL, 0, 0, 0, 0, 0, 0, 'X', 'X', -1};
+	map = (t_map){NULL, NULL, 0, 0, 0, 0, 0, 0, 'X', 'X', 'E'};
 	pi = (t_piece){NULL, 0, 0, 0, 0, 0, 0};
 	get_next_line(0, &line);
 	if (ft_strcmp(line + 9, "p1") != 1)
@@ -34,14 +34,27 @@ int		main(void)
 	free(line);
 	while (1)
 	{
+		//printf("start\n");
 		if (map.map)
+		{
 			get_map(&map, line);
+			update_map(&map);
+		}
 		else
+		{
 			create_map(&map, line);
+			init_list(&map);
+		}
+		//printf("la?\n");
 		create_piece(&pi, line);
 		//algo_filler(&map, &pi);
-		init_list(&map);
+		filler_algo(&map, &pi);
+		if (!map.last_map)
+			create_last_map(&map);
+		else
+			copy_map(&map);
 		free_piece(&pi);
+		//sleep(5);
 	}
 	free_map(&map);
 	return (0);

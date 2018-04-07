@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/06 15:22:54 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/07 22:46:30 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include <SDL.h>
 # include <SDL_ttf.h>
 # include "ft_printf.h"
+
+# define BLACK		"\x1B[30m"
+# define RED		"\x1B[31m"
+# define GREEN		"\x1B[32m"
+# define YELLOW		"\x1B[33m"
+# define BLUE		"\x1B[34m"
+# define MAGENTA	"\x1B[35m"
+# define CYAN		"\x1B[36m"
+# define WHITE		"\x1B[37m"
+# define RESET		"\x1B[0m"
 
 # define BACKGROUND_DAY		0x000000
 # define BACKGROUND_NIGHT	0x000000
@@ -49,6 +59,7 @@ typedef	union u_color	t_color;
 struct			s_map
 {
 	char	**map;
+	char	**last_map;
 	t_dots	**al_map;
 	t_dots	**tmp_map;
 	int		height;
@@ -57,7 +68,7 @@ struct			s_map
 	int		y;
 	char	player;
 	char	opponent;
-	int		over;
+	char	current;
 };
 
 struct			s_piece
@@ -161,6 +172,14 @@ int				min_dist(t_map *map, t_piece *pi);
 int				check_distance(t_map *map, t_piece *pi);
 
 void			init_list(t_map *map);
+void			filler_algo(t_map *map, t_piece *pi);
+void			recur_bot(t_map *map, int x, int y, int dist);
+void			recur_top(t_map *map, int x, int y, int dist);
+void			recur_left(t_map *map, int x, int y, int dist);
+void			recur_right(t_map *map, int x, int y, int dist);
+void			copy_map(t_map *map);
+void			update_map(t_map *map);
+void			create_last_map(t_map *map);
 
 t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
