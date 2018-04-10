@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/04/08 12:31:12 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/10 19:16:15 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,18 @@ NAME = rbalbous.filler
 VISU = visu
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -Ofast
 
 SRCS =	main.c \
 		map.c \
 		piece.c \
 		filler_init.c \
 		filler_algo.c \
-		update_map.c
+		update_map.c \
+		filler_link.c \
+		filler_recur.c \
+		filler_territory.c \
+		phoney_algo.c
 SRCS_PATH = srcs
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
 OBJ_PATH = obj
@@ -46,7 +50,7 @@ LIB = $(LIB_PATH)/libft.a
 all :		$(NAME) $(VISU)
 
 $(NAME) :	$(LIB) $(OBJ)
-			@$(CC) -o $@ $^ $(FLAGS)
+			@$(CC) -o resources/players/$(NAME) $^ $(FLAGS)
 			@echo "\033[32mfiller done\033[m"
 
 $(VISU) :	$(LIB) $(VISU_OBJ)

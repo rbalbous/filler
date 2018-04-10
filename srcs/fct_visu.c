@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:07:12 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/23 16:27:01 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/10 17:05:27 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,4 @@ SDL_Color	color_conv(unsigned int hexvalue)
 	rgb_color.b = (hexvalue & 0x0000ff);
 	rgb_color.a = 255;
 	return (rgb_color);
-}
-
-int			ft_abs(int x)
-{
-	x *= 1 - 2 * (x < 0);
-	return (x);
 }

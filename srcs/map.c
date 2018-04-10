@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 16:31:35 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:26:51 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/10 19:34:40 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			create_map(t_map *map, char *line)
 	int		i;
 
 	i = 0;
+	free(line);
 	get_next_line(0, &line);
 	map->height = ft_atoi(line + 8);
 	if (!(map->map = malloc(sizeof(*map->map) * (map->height + 1))))
@@ -46,12 +47,15 @@ int			create_map(t_map *map, char *line)
 		i++;
 	}
 	map->map[i] = 0;
+	init_list(map);
+	create_last_map(map);
 	return (1);
 }
 
-void		get_map(t_map *map, char *line)
+void		get_map(t_map *map)
 {
 	int		i;
+	char	*line;
 
 	i = 0;
 	get_next_line(0, &line);
@@ -67,4 +71,6 @@ void		get_map(t_map *map, char *line)
 		free(line);
 		i++;
 	}
+	update_map(map);
+	copy_map(map);
 }

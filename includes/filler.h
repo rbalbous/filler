@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/07 22:46:30 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/10 19:33:10 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ struct			s_map
 	int		width;
 	int		x;
 	int		y;
+	int		nb_op;
 	char	player;
 	char	opponent;
 	char	current;
+	char	over;
 };
 
 struct			s_piece
@@ -164,7 +166,7 @@ int				create_piece(t_piece *pi, char *line);
 void			free_map(t_map *map);
 void			get_piece(char **piece, t_map *info);
 void			free_piece(t_piece *pi);
-void			get_map(t_map *map, char *line);
+void			get_map(t_map *map);
 void			filler_break(t_map *map, t_piece *pi);
 int				algo_filler(t_map *map, t_piece *pi);
 int				place_piece(t_map *map, t_piece *pi);
@@ -172,7 +174,7 @@ int				min_dist(t_map *map, t_piece *pi);
 int				check_distance(t_map *map, t_piece *pi);
 
 void			init_list(t_map *map);
-void			filler_algo(t_map *map, t_piece *pi);
+int				filler_algo(t_map *map, t_piece *pi);
 void			recur_bot(t_map *map, int x, int y, int dist);
 void			recur_top(t_map *map, int x, int y, int dist);
 void			recur_left(t_map *map, int x, int y, int dist);
@@ -180,6 +182,11 @@ void			recur_right(t_map *map, int x, int y, int dist);
 void			copy_map(t_map *map);
 void			update_map(t_map *map);
 void			create_last_map(t_map *map);
+void			first_map(t_player *first, t_map *map);
+int				get_most_territory(t_map *map, t_piece *pi);
+void			put_piece(t_map *map, t_piece *pi);
+int				place_pi(t_map *map, t_piece *pi, int x, int y);
+int				phoney_algo(t_map *map, t_piece *pi);
 
 t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
@@ -193,7 +200,6 @@ void			draw_last(t_affi *disp, t_parse *info);
 void			put_rect(t_rect rect, Uint32 color, t_affi *disp);
 void			put_line(t_affi *disp, t_point start, t_point end
 , Uint32 color);
-int				ft_abs(int x);
 void			put_line(t_affi *disp, t_point start, t_point end
 , Uint32 color);
 void			put_pixel(int x, int y, Uint32 color, t_affi *disp);

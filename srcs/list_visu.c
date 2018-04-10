@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 16:54:13 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/06 14:50:46 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/10 18:54:35 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,20 @@ int			check_link(t_parse *info, char *line, t_turn *new)
 	while (ft_strncmp("Piece", line, 5) == 0)
 	{
 		skip(&line);
-		if (ft_strncmp(line, "<got (O)", 8) == 0 &&
-		ft_strcmp(line, "<got (O): [0, 0]") != 0)
+		if (ft_strncmp(line, "<got (X)", 8) != 0)
 		{
 			new->turn_nb_p1++;
 			new_line(&line, 1);
-			break ;
+			if (ft_strncmp("Piece", line, 5) != 0)
+				break ;
 		}
-		if (ft_strncmp(line, "<got (X)", 8) == 0 &&
-		ft_strcmp(line, "<got (X): [0, 0]") != 0)
+		else if (ft_strncmp(line, "<got (0)", 8) != 0)
 		{
 			new->turn_nb_p2++;
 			new_line(&line, 1);
-			break ;
+			if (ft_strncmp("Piece", line, 5) != 0)
+				break ;
 		}
-		new_line(&line, 1);
 	}
 	new_line(&line, 1);
 	return (check_link2(info, line, new));
