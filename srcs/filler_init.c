@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 13:38:38 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/07 19:51:46 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/09 23:30:48 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,6 @@ t_player	*get_next_link(t_player *player, int x, int y, t_map *map)
 	next->next = NULL;
 	player->next = next;
 	return (next);
-}
-
-void		print_list(t_player *first)
-{
-	while (first->next != NULL)
-	{
-		//ft_printf("%d %d %c\n", first->y, first->x, first->belong);
-		first = first->next;
-	}
-	//ft_printf("%d %d %c\n", first->y, first->x, first->belong);
 }
 
 void		check_dist(t_player *first, t_map *map, int x, int y)
@@ -78,72 +68,46 @@ void		check_dist(t_player *first, t_map *map, int x, int y)
 	map->al_map[y][x].dist = min_dist;
 }
 
-void		first_map(t_player *first, t_map *map)
+void		get_first_map(t_player *first, t_map *map, int y)
 {
 	int		x;
+
+	x = 0;
+	while (x < map->width)
+	{
+		if (map->map[y][x] == '.')
+		{
+			check_dist(first, map, x, y);
+		}
+		else
+		{
+			map->al_map[y][x].belong = (1 * 'O' +
+			(map->map[y][x] == 'X') * ('X' - 'O'));
+			map->al_map[y][x].dist = 0;
+		}
+		x++;
+	}
+}
+
+void		first_map(t_player *first, t_map *map)
+{
 	int		y;
 
-	//ft_printf("start\n");
+	y = 0;
 	if (!(map->al_map = malloc(sizeof(t_dots) * map->height + 1)))
 		display_error("malloc_error");
 	if (!(map->tmp_map = malloc(sizeof(t_dots) * map->height + 1)))
 			display_error("malloc_error");
-	y = 0;
 	while (y < map->height)
 	{
 		if (!((map->al_map)[y] = malloc(sizeof(t_dots*) * map->width + 1)))
 			display_error("malloc_error");
 		if (!((map->tmp_map)[y] = malloc(sizeof(t_dots*) * map->width + 1)))
 			display_error("malloc_error");
-		x = 0;
-		while (x < map->width)
-		{
-			if (map->map[y][x] == '.')
-			{
-				check_dist(first, map, x, y);
-			}
-			else
-			{
-				map->al_map[y][x].belong = (1 * 'O' + (map->map[y][x] == 'X') * ('X' - 'O'));
-				map->al_map[y][x].dist = 0;
-			}
-			x++;
-		}
+		get_first_map(first, map, y);
 		y++;
 	}
 
-}
-
-void		print_almap(t_map *map)
-{
-	int		y;
-	int		x;
-
-	y = 0;
-	ft_printf("la\n");
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			ft_printf("%2c ", map->al_map[y][x].belong);
-			x++;
-		}
-		ft_printf("\n");
-		y++;
-	}
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			ft_printf("%2d ", map->al_map[y][x].dist);
-			x++;
-		}
-		ft_printf("\n");
-		y++;
-	}
 }
 
 void		init_list(t_map *map)
@@ -181,7 +145,5 @@ void		init_list(t_map *map)
 		}
 		y++;
 	}
-	print_list(first);
 	first_map(first, map);
-	//print_almap(map);
 }

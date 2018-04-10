@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:13:55 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/05 15:01:35 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/08 12:23:58 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		get_win_infos(t_parse *info, t_affi *disp)
 		disp->win_height = (disp->pixel + 1) * info->map_height + 1;
 		disp->win_width = (disp->pixel + 1) * info->map_width + 1;
 	}
-	while (disp->win_height > 1400 || disp->win_width > 1400)
+	while (disp->win_height > 900 || disp->win_width > 900)
 	{
 		disp->pixel--;
 		disp->win_height = (disp->pixel + 1) * info->map_height + 1;
