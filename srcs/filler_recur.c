@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:02:18 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 17:56:16 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/11 11:20:49 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void		recur_top(t_map *map, int y, int x, int dist)
 	}
 	map->tmp_map[y][x].belong = map->current;
 	map->tmp_map[y][x].dist = dist;
+	recur_top(map, y, x + 1, dist + 1);
+	recur_top(map, y, x - 1, dist + 1);
+	recur_top(map, y - 1, x, dist + 1);
 }
 
 void		recur_bot(t_map *map, int y, int x, int dist)
