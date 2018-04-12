@@ -6,11 +6,23 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:43:58 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 17:59:06 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/11 14:04:08 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void		al_cpy(t_map *map)
+{
+	int		y;
+
+	y = 0;
+	while (y < map->height)
+	{
+		ft_memcpy(map->tmp_map[y], map->al_map[y], sizeof(t_dots) * map->width);
+		y++;
+	}
+}
 
 int			calc_territory(t_map *map)
 {

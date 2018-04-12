@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 19:33:10 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:12:23 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,9 +161,8 @@ union			u_color
 	unsigned char	rgb[4];
 };
 
-int				create_map(t_map *map, char *line);
-int				create_piece(t_piece *pi, char *line);
-void			free_map(t_map *map);
+void			create_map(t_map *map);
+void			create_piece(t_piece *pi);
 void			get_piece(char **piece, t_map *info);
 void			free_piece(t_piece *pi);
 void			get_map(t_map *map);
@@ -187,6 +186,7 @@ int				get_most_territory(t_map *map, t_piece *pi);
 void			put_piece(t_map *map, t_piece *pi);
 int				place_pi(t_map *map, t_piece *pi, int x, int y);
 int				phoney_algo(t_map *map, t_piece *pi);
+void			al_cpy(t_map *map);
 
 t_parse			parser_visu(t_affi *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
@@ -205,7 +205,7 @@ void			put_line(t_affi *disp, t_point start, t_point end
 void			put_pixel(int x, int y, Uint32 color, t_affi *disp);
 Uint32			get_color(t_color c1, t_color c2, double k);
 void			new_line(char	**line, int i);
-int				get_event(t_affi *disp, t_parse *info, t_turn *first);
+void			get_event(t_affi *disp, t_parse *info, t_turn *first);
 void			put_score(t_affi *disp, t_parse *info);
 void			put_colors(t_affi *disp, int x, int y);
 void			clean_quit(t_affi *disp);

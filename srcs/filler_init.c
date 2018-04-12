@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 13:38:38 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 17:05:41 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/11 17:49:04 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ void		get_first_map(t_player *first, t_map *map)
 void		first_map(t_player *first, t_map *map)
 {
 	map->y = 0;
-	if (!(map->al_map = malloc(sizeof(t_dots) * map->height + 1)))
+	if (!(map->al_map = malloc(sizeof(t_dots*) * map->height + 1)))
 		display_error("malloc_error");
-	if (!(map->tmp_map = malloc(sizeof(t_dots) * map->height + 1)))
+	if (!(map->tmp_map = malloc(sizeof(t_dots*) * map->height + 1)))
 		display_error("malloc_error");
 	while (map->y < map->height)
 	{
-		if (!((map->al_map)[map->y] = malloc(sizeof(t_dots*) * map->width)))
+		if (!((map->al_map)[map->y] = malloc(sizeof(t_dots) * map->width)))
 			display_error("malloc_error");
-		if (!((map->tmp_map)[map->y] = malloc(sizeof(t_dots*) * map->width)))
+		if (!((map->tmp_map)[map->y] = malloc(sizeof(t_dots) * map->width)))
 			display_error("malloc_error");
 		get_first_map(first, map);
 		map->y++;

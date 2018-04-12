@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 15:49:05 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/11 11:21:37 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:14:06 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int			filler_algo(t_map *map, t_piece *pi)
 {
 	int		max_ter;
 	int		ter;
-	int		y;
-	int		x;
 
 	max_ter = -10000000;
 	map->y = -pi->height - 1;
@@ -80,8 +78,7 @@ int			filler_algo(t_map *map, t_piece *pi)
 		{
 			if (place_pi(map, pi, map->x, map->y))
 			{
-				ter = get_most_territory(map, pi);
-				if (ter > max_ter)
+				if ((ter = get_most_territory(map, pi)) > max_ter)
 				{
 					max_ter = ter;
 					pi->x_result = map->x;
@@ -90,13 +87,7 @@ int			filler_algo(t_map *map, t_piece *pi)
 			}
 		}
 	}
-	y = 0;
-	while (y < map->height)
-	{
-		ft_memcpy(map->tmp_map[y], map->al_map[y], sizeof(t_dots) * map->width);
-		y++;
-	}
+	al_cpy(map);
 	ft_printf("%d %d\n", pi->y_result, pi->x_result);
-	get_map(map);
 	return (1);
 }

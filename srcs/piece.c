@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:14:57 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:27:20 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:12:12 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ void	free_piece(t_piece *pi)
 	free(pi->piece);
 }
 
-int		create_piece(t_piece *pi, char *line)
+void	create_piece(t_piece *pi)
 {
 	int		i;
+	char	*line;
 
 	i = 0;
 	get_next_line(0, &line);
@@ -44,5 +45,4 @@ int		create_piece(t_piece *pi, char *line)
 		i++;
 	}
 	pi->piece[i] = 0;
-	return (0);
 }

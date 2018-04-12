@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:13:55 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 23:55:29 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:05:01 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		get_win_infos(t_parse *info, t_affi *disp)
 		disp->win_height = (disp->pixel + 1) * info->map_height + 1;
 		disp->win_width = (disp->pixel + 1) * info->map_width + 1;
 	}
-	while (disp->win_height > 900 || disp->win_width > 900)
+	while (disp->win_height > 1400 || disp->win_width > 1400)
 	{
 		disp->pixel--;
 		disp->win_height = (disp->pixel + 1) * info->map_height + 1;
@@ -52,9 +52,8 @@ void		make_it_loop(t_affi disp, t_parse info, t_turn *current, int i)
 {
 	while (1)
 	{
-		while (SDL_PollEvent(&(disp.event)))
-			if (get_event(&disp, &info, disp.first) == 0)
-				break ;
+		if (SDL_PollEvent(&(disp.event)))
+			get_event(&disp, &info, disp.first);
 		if (!info.parse_finished)
 			current = next_turn(current, &info);
 		i += (!disp.pause);
