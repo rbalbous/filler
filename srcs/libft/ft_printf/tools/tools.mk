@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 22:07:59 by rbalbous          #+#    #+#              #
-#    Updated: 2018/04/05 14:22:38 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/04/12 15:50:15 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,4 +30,4 @@ TOOLS_PATH = ft_printf/tools
 OBJ += $(addprefix $(OBJ_PATH)/, $(TOOLS:.c=.o))
 
 $(OBJ_PATH)/%.o : $(TOOLS_PATH)/%.c $(INCLUDES)/ft_printf.h
-	@$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)	
+	$(CC) -o $@ -c $< -I $(INCLUDES) $(CFLAGS)	

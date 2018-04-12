@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 15:49:05 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 12:14:06 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/12 15:17:03 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int			filler_algo(t_map *map, t_piece *pi)
 		}
 	}
 	al_cpy(map);
-	ft_printf("%d %d\n", pi->y_result, pi->x_result);
-	return (1);
+	if (pi->x_result == 0 && pi->y_result == 0)
+		exit(0);
+	return (ft_printf("%d %d\n", pi->y_result, pi->x_result));
 }

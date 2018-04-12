@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:23 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 12:19:14 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/04/12 14:46:27 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		main(void)
 	while (1)
 	{
 		create_piece(&pi);
+		pi.x_result = 0;
+		pi.y_result = 0;
 		if (map.over == 0)
 			filler_algo(&map, &pi);
 		else
