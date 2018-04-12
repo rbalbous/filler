@@ -4,6 +4,6 @@
 ```
 ### Usage
 ```
-./resources/filler_vm -f map -p1 player1.filler -p2 resources/players/player2.filler
+./resources/filler_vm -f map -p1 player1.filler -p2 player2.filler
 ```
 
