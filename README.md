@@ -8,6 +8,6 @@
 you can add :
               -s -SeedNumber (random by default)
               -t -TimeoutValue
-              -q quiet
+              -q to silence
 ```
 
