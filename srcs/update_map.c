@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 18:40:20 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 12:25:12 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/01 14:59:26 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		copy_tmp(t_map *map)
 	y = 0;
 	while (y < map->height)
 	{
-		memcpy(map->al_map[y], map->tmp_map[y], sizeof(t_dots) * map->width);
+		ft_memcpy(map->al_map[y], map->tmp_map[y], sizeof(t_dots) * map->width);
 		y++;
 	}
 }
