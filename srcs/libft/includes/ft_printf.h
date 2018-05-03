@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:49:43 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/05 13:59:51 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/02 18:13:07 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <time.h>
 # include "libft.h"
 
-# define BUFF_SIZE 4200
+# define BUFF_SIZE 4096
 # define KEY "foufoureres"
 
 typedef unsigned char		t_uint8;

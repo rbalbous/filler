@@ -4,6 +4,10 @@
 ```
 ### Usage
 ```
-./resources/filler_vm -f map -p1 player1.filler -p2 resources/players/player2.filler
+./resources/filler_vm -f map -p1 player1.filler -p2 player2.filler
+you can add :
+              -s -SeedNumber (random by default)
+              -t -TimeoutValue
+              -q to silence
 ```
 

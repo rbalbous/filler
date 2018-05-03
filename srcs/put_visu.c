@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:11:09 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 14:32:18 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/01 21:50:50 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void		put_score(t_affi *disp, t_parse *info)
 	put_rect((t_rect){0, disp->win_height + 3, 100, disp->win_width}, 0, disp);
 	disp->message = SDL_GetWindowSurface(disp->win);
 	ft_sprintf(str1, "(%d) %s", disp->current->turn_nb_p1, info->p1);
-	disp->message = TTF_RenderText_Solid(disp->font, str1,
+	disp->message = TTF_RenderText_Blended(disp->font, str1,
 	color_conv(get_color((t_color){P1_DAY}, (t_color){P1_NIGHT}, disp->k)));
 	disp->message2 = SDL_GetWindowSurface(disp->win);
 	ft_sprintf(str2, "%s (%d)", info->p2, disp->current->turn_nb_p2);
-	disp->message2 = TTF_RenderText_Solid(disp->font, str2,
+	disp->message2 = TTF_RenderText_Blended(disp->font, str2,
 	color_conv(get_color((t_color){P2_DAY}, (t_color){P2_NIGHT}, disp->k)));
 	SDL_BlitSurface(disp->message, NULL, disp->surface, &(SDL_Rect)
 	{(((disp->win_width + 6 * disp->pixel) / 2) -
