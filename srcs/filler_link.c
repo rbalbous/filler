@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:42:09 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 11:59:45 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/03 13:40:24 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,10 @@ void		init_list(t_map *map)
 		map->y++;
 	}
 	first_map(first, map);
+	while (first != NULL)
+	{
+		player = first->next;
+		free(first);
+		first = player;
+	}
 }
