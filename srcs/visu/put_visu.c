@@ -6,27 +6,27 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:11:09 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/05/01 21:50:50 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:11:20 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void		put_pixel(int x, int y, Uint32 color, t_affi *disp)
+void		put_pixel(int x, int y, Uint32 color, t_disp *disp)
 {
 	((Uint32*)disp->surface->pixels)[y * disp->surface->w + x] = color;
 }
 
-void		put_rect(t_rect rect, Uint32 color, t_affi *disp)
+void		put_rect(t_rect rect, Uint32 color, t_disp *disp)
 {
 	int		min_width;
 	int		min_length;
 
 	min_length = 0;
-	while (rect.length > min_length)
+	while (min_length < rect.length)
 	{
 		min_width = 0;
-		while (rect.width > min_width)
+		while (min_width < rect.width)
 		{
 			put_pixel(rect.x + min_width, rect.y + min_length, color, disp);
 			min_width++;
@@ -35,7 +35,7 @@ void		put_rect(t_rect rect, Uint32 color, t_affi *disp)
 	}
 }
 
-void		put_line(t_affi *disp, t_point start, t_point end, Uint32 color)
+void		put_line(t_disp *disp, t_point start, t_point end, Uint32 color)
 {
 	t_point		d;
 	t_point		s;
@@ -60,7 +60,7 @@ void		put_line(t_affi *disp, t_point start, t_point end, Uint32 color)
 	}
 }
 
-void		put_score(t_affi *disp, t_parse *info)
+void		put_score(t_disp *disp, t_parse *info)
 {
 	char	str1[200];
 	char	str2[200];

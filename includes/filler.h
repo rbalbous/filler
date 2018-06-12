@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 16:01:51 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 12:12:23 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:05:21 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_dots	t_dots;
 typedef struct s_rect	t_rect;
 typedef struct s_point	t_point;
 typedef struct s_parse	t_parse;
-typedef	struct s_affi	t_affi;
+typedef	struct s_disp	t_disp;
 typedef	union u_color	t_color;
 
 struct			s_map
@@ -107,6 +107,7 @@ struct			s_parse
 	int		map_height;
 	int		map_width;
 	int		parse_finished;
+	int		last_player;
 };
 
 struct			s_point
@@ -132,7 +133,7 @@ struct			s_rect
 	int		width;
 };
 
-struct			s_affi
+struct			s_disp
 {
 	SDL_Window	*win;
 	SDL_Event	event;
@@ -147,6 +148,7 @@ struct			s_affi
 	t_point		start_o;
 	t_turn		*current;
 	t_turn		*first;
+	t_turn		*temp;
 	Uint8		pause : 1;
 	Uint8		grid;
 	int			last_event;
@@ -188,28 +190,28 @@ int				place_pi(t_map *map, t_piece *pi, int x, int y);
 int				phoney_algo(t_map *map, t_piece *pi);
 void			al_cpy(t_map *map);
 
-t_parse			parser_visu(t_affi *disp, t_turn **current);
+t_parse			parser_visu(t_disp *disp, t_turn **current);
 t_turn			*next_turn(t_turn *current, t_parse *info);
-void			check_map(t_affi *disp, t_parse *info, char **line);
+void			check_map(t_disp *disp, t_parse *info, char **line);
 void			check_players_header(t_parse *info, char **line, int i);
 void			display_error(char *str);
 char			*ft_strcdup(const char *src, int c);
 void			next_line(int fd, char **line);
-void			draw_next(t_affi *disp, t_parse *info);
-void			draw_last(t_affi *disp, t_parse *info);
-void			put_rect(t_rect rect, Uint32 color, t_affi *disp);
-void			put_line(t_affi *disp, t_point start, t_point end
+void			draw_next(t_disp *disp, t_parse *info);
+void			draw_last(t_disp *disp, t_parse *info);
+void			put_rect(t_rect rect, Uint32 color, t_disp *disp);
+void			put_line(t_disp *disp, t_point start, t_point end
 , Uint32 color);
-void			put_line(t_affi *disp, t_point start, t_point end
-, Uint32 color);
-void			put_pixel(int x, int y, Uint32 color, t_affi *disp);
+void			put_pixel(int x, int y, Uint32 color, t_disp *disp);
 Uint32			get_color(t_color c1, t_color c2, double k);
 void			new_line(char	**line, int i);
-void			get_event(t_affi *disp, t_parse *info, t_turn *first);
-void			put_score(t_affi *disp, t_parse *info);
-void			put_colors(t_affi *disp, int x, int y);
-void			clean_quit(t_affi *disp);
+void			get_event(t_disp *disp, t_parse *info, t_turn *first);
+void			put_score(t_disp *disp, t_parse *info);
+void			put_colors(t_disp *disp, int x, int y);
+void			clean_quit(t_disp *disp);
 SDL_Color		color_conv(unsigned int hexvalue);
-void			disp_tinsel(t_affi *disp, t_parse *info);
+void			disp_tinsel(t_disp *disp, t_parse *info);
+int				check_link(t_parse *info, char **line);
+int				parse_off(t_parse *info);
 
 #endif

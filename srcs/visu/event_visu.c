@@ -6,13 +6,13 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 18:00:45 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 16:06:32 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:00:14 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void		change_color(t_affi *disp, t_parse *info, int add)
+void		change_color(t_disp *disp, t_parse *info, int add)
 {
 	if (disp->k < 0.95 && add == 1)
 	{
@@ -34,7 +34,7 @@ void		change_color(t_affi *disp, t_parse *info, int add)
 	}
 }
 
-void		disp_next(t_affi *disp, t_parse *info)
+void		disp_next(t_disp *disp, t_parse *info)
 {
 	if (disp->current->next != NULL && disp->pause == 1)
 	{
@@ -46,7 +46,7 @@ void		disp_next(t_affi *disp, t_parse *info)
 	put_score(disp, info);
 }
 
-void		disp_last(t_affi *disp, t_parse *info)
+void		disp_last(t_disp *disp, t_parse *info)
 {
 	if (disp->current->prev != NULL && disp->pause == 1)
 	{
@@ -56,14 +56,14 @@ void		disp_last(t_affi *disp, t_parse *info)
 	}
 }
 
-void		disp_start(t_affi *disp, t_parse *info, t_turn *first)
+void		disp_start(t_disp *disp, t_parse *info, t_turn *first)
 {
 	disp->current = first;
 	draw_next(disp, info);
 	disp->pause = 0;
 }
 
-void		get_event(t_affi *disp, t_parse *info, t_turn *first)
+void		get_event(t_disp *disp, t_parse *info, t_turn *first)
 {
 	Uint8 *state;
 

@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:07:12 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 17:05:27 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:00:14 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Uint32		get_color(t_color c1, t_color c2, double k)
 	return (c.color);
 }
 
-void		clean_quit(t_affi *disp)
+void		clean_quit(t_disp *disp)
 {
 	SDL_FreeSurface(disp->surface);
 	SDL_DestroyWindow(disp->win);

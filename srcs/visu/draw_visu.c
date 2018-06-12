@@ -6,13 +6,13 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:55:34 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/23 16:18:30 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:00:14 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void		draw_next(t_affi *disp, t_parse *info)
+void		draw_next(t_disp *disp, t_parse *info)
 {
 	int		y;
 	int		x;
@@ -34,7 +34,7 @@ void		draw_next(t_affi *disp, t_parse *info)
 	}
 }
 
-void		put_colors(t_affi *disp, int x, int y)
+void		put_colors(t_disp *disp, int x, int y)
 {
 	int		p;
 
@@ -53,7 +53,7 @@ void		put_colors(t_affi *disp, int x, int y)
 	t_color){P1_LST_DAY}, (t_color){P1_LST_NIGHT}, disp->k), disp);
 }
 
-void		put_lst_colors(t_affi *disp, int x, int y)
+void		put_lst_colors(t_disp *disp, int x, int y)
 {
 	int		p;
 
@@ -72,7 +72,7 @@ void		put_lst_colors(t_affi *disp, int x, int y)
 		(t_color){P1_DAY}, (t_color){P1_NIGHT}, disp->k), disp);
 }
 
-void		draw_last(t_affi *disp, t_parse *info)
+void		draw_last(t_disp *disp, t_parse *info)
 {
 	int		y;
 	int		x;

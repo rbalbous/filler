@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 14:50:38 by home              #+#    #+#             */
-/*   Updated: 2017/12/05 13:32:21 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/03 14:31:05 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	ft_bzero(void *str, size_t n)
 {
-	char	*tmp;
-
-	tmp = str;
-	while (0 < n--)
-		*(tmp++) = 0;
+	while (n >= 8)
+	{
+		*((uintmax_t *)str) = 0;
+		str = (void *)((uintmax_t *)str + 1);
+		n -= 8;
+	}
+	while (n-- > 0)
+	{
+		*((unsigned char *)str) = 0;
+		str = (void *)((unsigned char *)str + 1);
+	}
 }

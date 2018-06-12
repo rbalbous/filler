@@ -6,7 +6,7 @@
 #    By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/23 15:23:24 by rbalbous          #+#    #+#              #
-#    Updated: 2018/05/03 13:16:28 by rbalbous         ###   ########.fr        #
+#    Updated: 2018/05/07 17:09:28 by rbalbous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,11 @@ SRCS =	main.c \
 		filler_recur.c \
 		filler_territory.c \
 		phoney_algo.c
-SRCS_PATH = srcs
-OBJ = $(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
+SRCS_PATH = srcs/filler
+SRCS_OBJ = $(addprefix $(OBJ_PATH)/, $(SRCS:.c=.o))
 OBJ_PATH = obj
 
-VISU_PATH = srcs
+VISU_PATH = srcs/visu
 VISU_SRCS = main_visu.c \
 			parser_visu.c \
 			check_error_visu.c \
@@ -47,10 +47,10 @@ INCLUDES = includes
 LIB_PATH = srcs/libft
 LIB = $(LIB_PATH)/libft.a
 
-all :		$(NAME) $(VISU)
+all :		$(NAME) $(VISU) 
 
-$(NAME) :	$(LIB) $(OBJ)
-			$(CC) -o $(NAME) $^ $(FLAGS)
+$(NAME) :	$(LIB) $(SRCS_OBJ)
+			$(CC) -o $@ $^ $(FLAGS)
 			rsync -u $(NAME) resources/players
 			@echo "\033[32mfiller done\033[m"
 
@@ -59,15 +59,19 @@ $(VISU) :	$(LIB) $(VISU_OBJ)
 			@echo "\033[35mvisu done\033[m"
 
 $(LIB) :
-			make -j16 -C $(LIB_PATH)
+			make -j -C $(LIB_PATH)
 
 $(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c $(INCLUDES)/filler.h
 			mkdir -p $(OBJ_PATH)
 			$(CC) -o $@ -c $< -I $(INCLUDES) -I $(LIB_PATH)/includes -I $(FLAGS) -I ~/.brew/include/SDL2
 
+$(OBJ_PATH)/%.o: $(VISU_PATH)/%.c $(INCLUDES)/filler.h
+			mkdir -p $(OBJ_PATH)
+			$(CC) -o $@ -c $< -I $(INCLUDES) -I $(LIB_PATH)/includes -I $(FLAGS) -I ~/.brew/include/SDL2
+
 clean :
 			make -C $(LIB_PATH) clean
-			rm -f $(OBJ)
+			rm -f $(SRCS_OBJ)
 			rm -f $(VISU_OBJ)
 
 fclean :	clean

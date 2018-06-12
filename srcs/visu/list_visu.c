@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 16:54:13 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 18:54:35 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/05 22:23:24 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,45 @@ void		skip(char **line)
 	next_line(0, line);
 }
 
-int			check_link2(t_parse *info, char *line, t_turn *new)
+int			check_link(t_parse *info, char **line)
 {
-	if (ft_strncmp("==", line, 2) == 0)
+	(void)info;
+	while (ft_strncmp("Piece", *line, 5) == 0)
+	{
+		skip(line);
+		if (ft_strncmp(*line, "<got (X)", 8) != 0)
+		{
+			info->last_player = 1;
+			new_line(line, 1);
+			if (ft_strncmp("Piece", *line, 5) != 0)
+				break ;
+		}
+		else if (ft_strncmp(*line, "<got (O)", 8) != 0)
+		{
+			info->last_player = 2;
+			new_line(line, 1);
+			if (ft_strncmp("Piece", *line, 5) != 0)
+				break ;
+		}
+	}
+	return (1);
+}
+
+int			parse_off(t_parse *info)
+{
+	char *line;
+
+	next_line(0, &line);
+	if (!check_link(info, &line))
+		return (0);
+	if (ft_strncmp("Plateau", line, 7) != 0)
 	{
 		free(line);
-		if (new->turn_nb_p2 > new->turn_nb_p1)
-			new->turn_nb_p2++;
-		else
-			new->turn_nb_p1++;
 		info->parse_finished = 1;
 		return (0);
 	}
 	free(line);
 	return (1);
-}
-
-int			check_link(t_parse *info, char *line, t_turn *new)
-{
-	next_line(0, &line);
-	while (ft_strncmp("Piece", line, 5) == 0)
-	{
-		skip(&line);
-		if (ft_strncmp(line, "<got (X)", 8) != 0)
-		{
-			new->turn_nb_p1++;
-			new_line(&line, 1);
-			if (ft_strncmp("Piece", line, 5) != 0)
-				break ;
-		}
-		else if (ft_strncmp(line, "<got (0)", 8) != 0)
-		{
-			new->turn_nb_p2++;
-			new_line(&line, 1);
-			if (ft_strncmp("Piece", line, 5) != 0)
-				break ;
-		}
-	}
-	new_line(&line, 1);
-	return (check_link2(info, line, new));
 }
 
 t_turn		*next_turn(t_turn *current, t_parse *info)
@@ -76,12 +76,11 @@ t_turn		*next_turn(t_turn *current, t_parse *info)
 	int			i;
 
 	i = -1;
+	new_line(&line, 2);
 	if (!(new = malloc(sizeof(t_turn) * 1)))
 		display_error("malloc error");
-	new->turn_nb_p1 = current->turn_nb_p1;
-	new->turn_nb_p2 = current->turn_nb_p2;
-	if (!check_link(info, line, new))
-		return (NULL);
+	new->turn_nb_p1 = current->turn_nb_p1 + (info->last_player == 1);
+	new->turn_nb_p2 = current->turn_nb_p2 + (info->last_player == 2);
 	new->next = NULL;
 	new->prev = current;
 	current->next = new;

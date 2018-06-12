@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 15:45:45 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/03/21 20:30:51 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/03 15:00:14 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		check_players_header(t_parse *info, char **line, int i)
 	info->p2_len = ft_strlen(info->p2);
 }
 
-void		check_map(t_affi *disp, t_parse *info, char **line)
+void		check_map(t_disp *disp, t_parse *info, char **line)
 {
 	(void)disp;
 	next_line(0, line);

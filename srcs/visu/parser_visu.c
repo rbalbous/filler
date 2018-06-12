@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:08:59 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/10 16:15:27 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/05 22:11:14 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		new_line(char **line, int i)
 		free(*line);
 }
 
-t_parse		parser_visu(t_affi *disp, t_turn **current)
+t_parse		parser_visu(t_disp *disp, t_turn **current)
 {
 	t_turn		list;
 	t_parse		info;

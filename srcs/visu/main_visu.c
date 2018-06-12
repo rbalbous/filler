@@ -6,7 +6,7 @@
 /*   By: rbalbous <rbalbous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 15:13:55 by rbalbous          #+#    #+#             */
-/*   Updated: 2018/04/12 14:29:01 by rbalbous         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:06:04 by rbalbous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void		free_curr(t_turn *current, t_parse *info)
 		free(current->map[i]);
 		i++;
 	}
-	free(current->map[i]);
+	free(current->map);
 	free(current);
 }
 
-void		get_win_infos(t_parse *info, t_affi *disp)
+void		get_win_infos(t_parse *info, t_disp *disp)
 {
 	disp->pixel = 11;
 	disp->font_size = 45;
@@ -48,13 +48,13 @@ void		get_win_infos(t_parse *info, t_affi *disp)
 	}
 }
 
-void		make_it_loop(t_affi disp, t_parse info, t_turn *current, int i)
+void		make_it_loop(t_disp disp, t_parse info, t_turn *current, int i)
 {
 	while (1)
 	{
 		if (SDL_PollEvent(&(disp.event)))
 			get_event(&disp, &info, disp.first);
-		if (!info.parse_finished)
+		if (!info.parse_finished && parse_off(&info))
 			current = next_turn(current, &info);
 		i += (!disp.pause);
 		if (i == 0)
@@ -76,10 +76,8 @@ void		make_it_loop(t_affi disp, t_parse info, t_turn *current, int i)
 	}
 }
 
-void		init_disp(t_affi *disp, t_turn **current)
+void		init_disp(t_disp *disp, t_turn **current)
 {
-	if (!(disp->first = ft_memalloc(sizeof(t_turn) + 1)))
-		display_error("malloc error");
 	disp->first = *current;
 	disp->first->next = *current;
 	disp->first->prev = NULL;
@@ -103,18 +101,17 @@ void		init_disp(t_affi *disp, t_turn **current)
 
 int			main(void)
 {
-	t_affi		disp;
+	t_disp		disp;
 	t_parse		info;
-	t_turn		*current;
 	SDL_Color	color;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		display_error("Error : Init");
 	if (TTF_Init() < 0)
 		display_error("Error : Init");
-	info = parser_visu(&disp, &current);
+	info = parser_visu(&disp, &(disp.temp));
 	get_win_infos(&info, &disp);
-	init_disp(&disp, &current);
+	init_disp(&disp, &(disp.temp));
 	draw_next(&disp, &info);
 	put_line(&disp, (t_point){0, disp.win_height},
 	(t_point){disp.win_width, disp.win_height}, 0x404040);
@@ -125,6 +122,5 @@ int			main(void)
 	put_score(&disp, &info);
 	SDL_GL_SetSwapInterval(1);
 	make_it_loop(disp, info, disp.current, -1);
-	free_curr(current, &info);
 	clean_quit(&disp);
 }
