@@ -6,9 +6,9 @@
 ```
 ./resources/filler_vm -f map -p1 player1.filler -p2 player2.filler
 ```
+### Usage exemple
 ```
-exemple :
-./resources/filler_vm -f map -p1 rbalbous.filler -p2 rbalbous.filler
+./resources/filler_vm -f resources/maps/map02 -p1 resources/players/rbalbous.filler  -p2 resources/players/rbalbous.filler | ./visu
 ```
 
 you can add :
