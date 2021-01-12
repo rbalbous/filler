@@ -10,7 +10,7 @@
 ```
 ./resources/filler_vm -f resources/maps/map02 -p1 resources/players/rbalbous.filler  -p2 resources/players/rbalbous.filler | ./visu
 ```
-
+```
 you can add :
               -s -SeedNumber (random by default)
               -t -TimeoutValue
